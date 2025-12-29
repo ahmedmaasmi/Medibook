@@ -1,0 +1,84 @@
+{
+    "users": [
+        {
+            "email": "dr.smith@example.com",
+            "password": "Password123!",
+            "firstName": "John",
+            "lastName": "Smith",
+            "phone": "+1234567890",
+            "role": "doctor"
+        },
+        {
+            "email": "dr.jones@example.com",
+            "password": "Password123!",
+            "firstName": "Sarah",
+            "lastName": "Jones",
+            "phone": "+1987654321",
+            "role": "doctor"
+        },
+        {
+            "email": "client1@example.com",
+            "password": "Password123!",
+            "firstName": "Alice",
+            "lastName": "Wonder",
+            "phone": "+1122334455",
+            "role": "client"
+        },
+        {
+            "email": "client2@example.com",
+            "password": "Password123!",
+            "firstName": "Bob",
+            "lastName": "Builder",
+            "phone": "+1554433221",
+            "role": "client"
+        }
+    ],
+    "doctors": [
+        {
+            "userEmail": "dr.smith@example.com",
+            "specialization": "Cardiology",
+            "licenseNumber": "LIC12345",
+            "bio": "Experienced cardiologist with 15 years in the field.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "dr.jones@example.com",
+            "specialization": "Dermatology",
+            "licenseNumber": "LIC67890",
+            "bio": "Expert in skin care and dermatological procedures.",
+            "consultationFee": 120.00,
+            "yearsOfExperience": 10
+        }
+    ],
+    "availabilities": [
+        {
+            "doctorEmail": "dr.smith@example.com",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dr.smith@example.com",
+            "dayOfWeek": 3,
+            "startTime": "10:00:00",
+            "endTime": "15:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dr.jones@example.com",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "dr.jones@example.com",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        }
+    ]
+}
