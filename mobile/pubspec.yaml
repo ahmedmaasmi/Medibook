@@ -1,8 +1,13 @@
 name: doctor_appointment_mobile
-description: Doctor Appointment Platform Mobile App
+description: MediBook - Healthcare appointment booking mobile app with voice assistance
 
 publish_to: 'none'
 version: 1.0.0+1
+
+# Healthcare app metadata
+homepage: https://medibook.healthcare
+repository: https://github.com/medibook/mobile
+issue_tracker: https://github.com/medibook/mobile/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -27,8 +32,8 @@ dependencies:
   shared_preferences: ^2.2.2
   
   # Voice Input
-  speech_to_text: ^6.6.0
-  flutter_tts: ^3.8.5
+  speech_to_text: ^7.3.0
+  flutter_tts: ^4.2.3
   
   # Calendar
   table_calendar: ^3.0.9

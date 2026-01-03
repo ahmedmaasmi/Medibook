@@ -7,12 +7,12 @@ export default function Home() {
     const { isAuthenticated, user } = useAuth();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900">
             {/* Navigation */}
             <nav className="fixed top-0 left-0 right-0 z-50 glass-dark">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-primary-500 to-purple-500 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center">
                             <span className="text-white font-bold text-xl">M</span>
                         </div>
                         <span className="text-white font-bold text-xl">MediBook</span>
@@ -82,7 +82,7 @@ export default function Home() {
 
                         {/* Hero Visual */}
                         <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-purple-500/20 rounded-3xl blur-3xl"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-3xl blur-3xl"></div>
                             <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
                                 <div className="space-y-6">
                                     {/* Voice Assistant Demo */}
@@ -106,7 +106,7 @@ export default function Home() {
                                             { name: 'Dr. Emily Davis', specialty: 'Neurologist', time: '4:00 PM' },
                                         ].map((doc, i) => (
                                             <div key={i} className="flex items-center gap-4 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors cursor-pointer">
-                                                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary-400 to-purple-400 flex items-center justify-center text-white font-semibold">
+                                                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary-400 to-accent-400 flex items-center justify-center text-white font-semibold">
                                                     {doc.name.charAt(4)}
                                                 </div>
                                                 <div className="flex-1">
@@ -180,7 +180,7 @@ export default function Home() {
             <footer className="py-12 px-6 border-t border-white/10">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-primary-500 to-purple-500 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center">
                             <span className="text-white font-bold">M</span>
                         </div>
                         <span className="text-white font-semibold">MediBook</span>

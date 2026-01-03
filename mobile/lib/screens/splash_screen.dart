@@ -13,7 +13,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _checkAuth();
+    // Use microtask to ensure this runs after the current build frame
+    Future.microtask(() => _checkAuth());
   }
 
   Future<void> _checkAuth() async {
@@ -41,9 +42,8 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF1E1B4B),
-              Color(0xFF581C87),
-              Color(0xFF0F172A),
+              Color(0xFF090607),
+              Color(0xFF221F20),
             ],
           ),
         ),
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF6366F1), Color(0xFF9333EA)],
+                    colors: [Color(0xFFAC1ED6), Color(0xFFC26E73)],
                   ),
                 ),
                 child: const Center(
@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               const SizedBox(height: 48),
               const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6366F1)),
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFAC1ED6)),
               ),
             ],
           ),

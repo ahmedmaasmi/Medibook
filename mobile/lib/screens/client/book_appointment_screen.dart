@@ -4,7 +4,9 @@ import '../../models/models.dart';
 import '../../services/api_service.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
-  const BookAppointmentScreen({super.key});
+  final VoidCallback? onViewAppointments;
+
+  const BookAppointmentScreen({super.key, this.onViewAppointments});
 
   @override
   State<BookAppointmentScreen> createState() => _BookAppointmentScreenState();
@@ -79,14 +81,71 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           backgroundColor: const Color(0xFF1E293B),
           title: const Row(
             children: [
-              Icon(Icons.check_circle, color: Color(0xFF22C55E)),
-              SizedBox(width: 8),
-              Text('Success', style: TextStyle(color: Colors.white)),
+              Icon(Icons.check_circle, color: Color(0xFF22C55E), size: 28),
+              SizedBox(width: 12),
+              Text('Appointment Booked!', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             ],
           ),
-          content: Text(
-            'Your appointment with Dr. ${_selectedDoctor!.user.lastName} has been booked for ${DateFormat('MMM d').format(_selectedDate)} at ${_selectedSlot!.startTime.substring(0, 5)}.',
-            style: const TextStyle(color: Colors.white70),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Your appointment with Dr. ${_selectedDoctor!.user.lastName} has been successfully booked.',
+                style: const TextStyle(color: Colors.white70, fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.calendar_today, color: const Color(0xFFAC1ED6), size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          DateFormat('EEEE, MMMM d, yyyy').format(_selectedDate),
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.schedule, color: const Color(0xFFAC1ED6), size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${_selectedSlot!.startTime.substring(0, 5)} - ${_selectedSlot!.endTime.substring(0, 5)}',
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.local_hospital, color: const Color(0xFFAC1ED6), size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          _selectedDoctor!.specialization,
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'You will receive a confirmation email and reminder notifications before your appointment.',
+                style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 14),
+              ),
+            ],
           ),
           actions: [
             TextButton(
@@ -99,7 +158,20 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   _reason = '';
                 });
               },
-              child: const Text('OK'),
+              child: const Text('Book Another', style: TextStyle(color: Color(0xFFAC1ED6))),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Close dialog
+                if (widget.onViewAppointments != null) {
+                  widget.onViewAppointments!(); // Switch to appointments tab
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFAC1ED6),
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('View Appointments'),
             ),
           ],
         ),
@@ -166,7 +238,17 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('Dr. ${doc.user.fullName}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
-                                  Text(doc.specialization, style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12)),
+                                  Text(doc.specialization, style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14)),
+                                  if (doc.yearsOfExperience != null)
+                                    Text(
+                                      '${doc.yearsOfExperience} years experience',
+                                      style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12),
+                                    ),
+                                  if (doc.consultationFee != null)
+                                    Text(
+                                      '\$${doc.consultationFee}/consultation',
+                                      style: TextStyle(color: const Color(0xFF22C55E), fontSize: 12, fontWeight: FontWeight.w500),
+                                    ),
                                 ],
                               ),
                             ),
@@ -206,7 +288,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                   children: [
                                     Text(DateFormat('EEE').format(date), style: TextStyle(color: isSelected ? Colors.white : Colors.white70, fontSize: 12)),
                                     const SizedBox(height: 4),
-                                    Text(DateFormat('d').format(date), style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                                    Text(DateFormat('d').format(date), style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
@@ -230,7 +312,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               : Wrap(
                                   spacing: 8,
                                   runSpacing: 8,
-                                  children: _slots.map((slot) => GestureDetector(
+                                  children: _slots.where((slot) => slot.available).map((slot) => GestureDetector(
                                     onTap: () => setState(() => _selectedSlot = slot),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

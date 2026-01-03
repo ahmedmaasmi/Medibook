@@ -1,0 +1,13 @@
+Seeded User Emails and Credentials:
+-----------------------------------
+
+Doctors:
+- dr.smith@example.com (Password: Password123!) - Cardiology
+- dr.jones@example.com (Password: Password123!) - Dermatology
+- dr.wilson@example.com (Password: Password123!) - Pediatrics
+- dr.garcia@example.com (Password: Password123!) - Neurology
+
+Clients:
+- client1@example.com (Password: Password123!)
+- client2@example.com (Password: Password123!)
+- ahmed@test.com (Password: Password123!)

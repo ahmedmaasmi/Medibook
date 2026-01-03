@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> _register() async {
     if (!_formKey.currentState!.validate()) return;
 
-    final userData = {
+    final Map<String, dynamic> userData = {
       'email': _emailController.text.trim(),
       'password': _passwordController.text,
       'firstName': _firstNameController.text.trim(),

@@ -127,20 +127,29 @@ class ApiService {
     return Appointment.fromJson(data['data']['appointment']);
   }
   
-  static Future<List<Appointment>> getAppointments({String? fromDate}) async {
+  static Future<List<Appointment>> getAppointments({String? fromDate, String? toDate}) async {
     final headers = await _getHeaders();
     String url = '${AppConfig.apiUrl}/appointments';
+    List<String> queryParams = [];
+
     if (fromDate != null) {
-      url += '?fromDate=$fromDate';
+      queryParams.add('fromDate=$fromDate');
     }
-    
+    if (toDate != null) {
+      queryParams.add('toDate=$toDate');
+    }
+
+    if (queryParams.isNotEmpty) {
+      url += '?' + queryParams.join('&');
+    }
+
     final response = await http.get(Uri.parse(url), headers: headers);
-    
+
     final data = jsonDecode(response.body);
     if (!response.statusCode.toString().startsWith('2')) {
       throw Exception(data['message'] ?? 'Failed to fetch appointments');
     }
-    
+
     return (data['data']['appointments'] as List)
         .map((a) => Appointment.fromJson(a))
         .toList();

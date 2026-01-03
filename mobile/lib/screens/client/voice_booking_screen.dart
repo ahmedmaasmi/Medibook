@@ -17,9 +17,12 @@ class _VoiceBookingScreenState extends State<VoiceBookingScreen> {
   bool _isListening = false;
   bool _isProcessing = false;
   bool _speechAvailable = false;
-  String _transcript = '';
-  String? _response;
-  bool? _responseSuccess;
+  final List<Map<String, dynamic>> _messages = [
+    {
+      'isUser': false,
+      'text': 'Hi! I\'m here to help you book a doctor\'s appointment. You can say things like "Book an appointment with a cardiologist for tomorrow" or "Find me a dentist available next week". What would you like to do?',
+    }
+  ];
 
   @override
   void initState() {
@@ -32,7 +35,12 @@ class _VoiceBookingScreenState extends State<VoiceBookingScreen> {
     _speechAvailable = await _speech.initialize(
       onError: (error) => setState(() => _isListening = false),
       onStatus: (status) {
-        if (status == 'done') setState(() => _isListening = false);
+        if (status == 'done') {
+           setState(() => _isListening = false);
+           if (_speech.lastRecognizedWords.isNotEmpty) {
+             _handleUserMessage(_speech.lastRecognizedWords);
+           }
+        }
       },
     );
     setState(() {});
@@ -49,18 +57,14 @@ class _VoiceBookingScreenState extends State<VoiceBookingScreen> {
     
     setState(() {
       _isListening = true;
-      _transcript = '';
-      _response = null;
     });
 
     await _speech.listen(
       onResult: (result) {
-        setState(() {
-          _transcript = result.recognizedWords;
-        });
+        // Real-time updates could go here if we wanted to show partial results
       },
       listenFor: const Duration(seconds: 30),
-      pauseFor: const Duration(seconds: 3),
+      pauseFor: const Duration(seconds: 2),
     );
   }
 
@@ -69,28 +73,92 @@ class _VoiceBookingScreenState extends State<VoiceBookingScreen> {
     setState(() => _isListening = false);
   }
 
-  Future<void> _processCommand() async {
-    if (_transcript.isEmpty) return;
-    
-    setState(() => _isProcessing = true);
+  Future<void> _handleUserMessage(String text) async {
+    if (text.isEmpty) return;
+
+    setState(() {
+      _messages.add({
+        'isUser': true,
+        'text': text,
+      });
+      _isProcessing = true;
+    });
 
     try {
-      final result = await ApiService.processVoiceCommand(_transcript);
+      // Process voice command for appointment booking
+      final result = await ApiService.processVoiceCommand(text);
+      final responseText = result['message'];
+
       setState(() {
-        _response = result['message'];
-        _responseSuccess = result['success'];
+        _messages.add({
+          'isUser': false,
+          'text': responseText,
+        });
       });
-      
-      // Speak the response
-      await _tts.speak(result['message']);
+
+      await _tts.speak(responseText);
     } catch (e) {
       setState(() {
-        _response = e.toString().replaceAll('Exception: ', '');
-        _responseSuccess = false;
+        _messages.add({
+          'isUser': false,
+          'text': "I'm sorry, I couldn't process that request. Please try again or use the manual booking option.",
+        });
       });
     } finally {
       setState(() => _isProcessing = false);
     }
+  }
+
+  void _showHelpDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1E293B),
+        title: const Text(
+          'Voice Booking Help',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'You can say things like:',
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 12),
+            _buildExampleText('"Book an appointment with a cardiologist"'),
+            _buildExampleText('"Find me a dentist for next Tuesday"'),
+            _buildExampleText('"Schedule a check-up with Dr. Smith"'),
+            _buildExampleText('"I need to see a pediatrician tomorrow"'),
+            const SizedBox(height: 16),
+            Text(
+              'The system will help you find available doctors and book appointments using natural language.',
+              style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Got it'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExampleText(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white.withOpacity(0.8),
+          fontStyle: FontStyle.italic,
+        ),
+      ),
+    );
   }
 
   @override
@@ -102,149 +170,200 @@ class _VoiceBookingScreenState extends State<VoiceBookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF1E1B4B), Color(0xFF581C87), Color(0xFF0F172A)],
+    return Scaffold(
+      backgroundColor: const Color(0xFF090607),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, size: 18),
+          onPressed: () => Navigator.pop(context),
         ),
+        title: Column(
+          children: [
+            const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.mic, color: Color(0xFFAC1ED6), size: 16),
+                SizedBox(width: 8),
+                Text('Voice Booking', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              ],
+            ),
+            Text(
+              'Speak to book appointments',
+              style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.5)),
+            ),
+          ],
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.help_outline),
+            onPressed: () => _showHelpDialog(context),
+          ),
+        ],
       ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              // Header
-              const Text(
-                'AI Voice Booking',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Speak naturally to book appointments',
-                style: TextStyle(color: Colors.white.withOpacity(0.6)),
-              ),
-              
-              const Spacer(),
-
-              // Microphone Button
-              GestureDetector(
-                onTap: _isProcessing ? null : (_isListening ? _stopListening : _startListening),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  width: 120,
-                  height: 120,
+      body: Stack(
+        children: [
+           // Abstract background orb
+          if (_messages.isEmpty || _messages.length < 3)
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.2,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: 300,
+                  height: 300,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _isListening ? const Color(0xFF6366F1) : Colors.white.withOpacity(0.1),
-                    boxShadow: _isListening
-                        ? [BoxShadow(color: const Color(0xFF6366F1).withOpacity(0.5), blurRadius: 30, spreadRadius: 10)]
-                        : null,
-                  ),
-                  child: Icon(
-                    _isListening ? Icons.mic : Icons.mic_none,
-                    size: 48,
-                    color: _isListening ? Colors.white : Colors.white.withOpacity(0.7),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              Text(
-                _isListening ? 'Listening...' : (_isProcessing ? 'Processing...' : 'Tap to speak'),
-                style: TextStyle(color: Colors.white.withOpacity(0.6)),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Transcript
-              if (_transcript.isNotEmpty) ...[
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.05),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('You said:', style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12)),
-                      const SizedBox(height: 8),
-                      Text('"$_transcript"', style: const TextStyle(color: Colors.white, fontSize: 16)),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                if (!_isListening && _response == null)
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: _isProcessing ? null : _processCommand,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6366F1),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
-                      child: _isProcessing
-                          ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)))
-                          : const Text('Process Request', style: TextStyle(fontWeight: FontWeight.w600)),
+                    gradient: RadialGradient(
+                      colors: [
+                        const Color(0xFFAC1ED6).withOpacity(0.2),
+                        Colors.transparent,
+                      ],
                     ),
+                    boxShadow: [
+                       BoxShadow(
+                        color: const Color(0xFFAC1ED6).withOpacity(0.1),
+                        blurRadius: 100,
+                        spreadRadius: 20,
+                      )
+                    ]
                   ),
-              ],
-
-              // Response
-              if (_response != null) ...[
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: (_responseSuccess == true ? const Color(0xFF22C55E) : const Color(0xFFEAB308)).withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: (_responseSuccess == true ? const Color(0xFF22C55E) : const Color(0xFFEAB308)).withOpacity(0.5)),
-                  ),
-                  child: Text(_response!, style: TextStyle(color: _responseSuccess == true ? const Color(0xFF22C55E) : const Color(0xFFEAB308))),
                 ),
-              ],
+              ),
+            ),
 
-              const Spacer(),
-
-              // Example Commands
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(16),
+          Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(20),
+                  itemCount: _messages.length,
+                  itemBuilder: (context, index) {
+                    final msg = _messages[index];
+                    final isUser = msg['isUser'] as bool;
+                    return Align(
+                      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 24),
+                        padding: const EdgeInsets.all(20),
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.8,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: isUser
+                              ? const LinearGradient(
+                                  colors: [Color(0xFFAC1ED6), Color(0xFFC26E73)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                )
+                              : null,
+                          color: isUser ? null : const Color(0xFF221F20),
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(24),
+                            topRight: const Radius.circular(24),
+                            bottomLeft: Radius.circular(isUser ? 24 : 4),
+                            bottomRight: Radius.circular(isUser ? 4 : 24),
+                          ),
+                        ),
+                        child: Text(
+                          msg['text'],
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(isUser ? 1.0 : 0.8),
+                            height: 1.5,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
+              ),
+              
+              // Bottom Input Area
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Try saying:', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
-                    const SizedBox(height: 12),
-                    ...[
-                      '"Book an appointment with Dr. Smith tomorrow"',
-                      '"Check availability for Monday"',
-                      '"What are my upcoming appointments?"',
-                    ].map((example) => Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
+                    // Status Text
+                    Text(
+                      _isListening
+                          ? 'Listening... Say your appointment request'
+                          : _isProcessing
+                              ? 'Processing your request...'
+                              : 'Tap the microphone to start booking',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Voice Button
+                    GestureDetector(
+                      onTap: _isListening ? _stopListening : _startListening,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            colors: _isListening
+                                ? [const Color(0xFFEF4444), const Color(0xFFDC2626)]
+                                : [const Color(0xFFAC1ED6), const Color(0xFFC26E73)],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: (_isListening ? const Color(0xFFEF4444) : const Color(0xFFAC1ED6)).withOpacity(0.5),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          _isListening
+                              ? Icons.stop
+                              : (_isProcessing ? Icons.hourglass_empty : Icons.mic),
+                          color: Colors.white,
+                          size: 36,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // Alternative Option
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(width: 6, height: 6, decoration: const BoxDecoration(color: Color(0xFF6366F1), shape: BoxShape.circle)),
-                          const SizedBox(width: 12),
-                          Expanded(child: Text(example, style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 12))),
+                          Icon(
+                            Icons.calendar_today,
+                            color: Colors.white.withOpacity(0.5),
+                            size: 16,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Or use manual booking',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.5),
+                              fontSize: 14,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
                         ],
                       ),
-                    )),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

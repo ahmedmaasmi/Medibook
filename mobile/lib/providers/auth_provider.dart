@@ -16,7 +16,8 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> checkAuth() async {
     _isLoading = true;
-    notifyListeners();
+    // Defer notifyListeners to avoid calling during build
+    Future.microtask(() => notifyListeners());
 
     try {
       final token = await ApiService.getToken();
@@ -28,7 +29,8 @@ class AuthProvider with ChangeNotifier {
       _user = null;
     } finally {
       _isLoading = false;
-      notifyListeners();
+      // Defer notifyListeners to avoid calling during build
+      Future.microtask(() => notifyListeners());
     }
   }
 

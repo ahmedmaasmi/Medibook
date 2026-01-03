@@ -10,17 +10,34 @@ router.post('/process',
     authenticate,
     [
         body('transcript').notEmpty().isString(),
+        body('stream').optional().isBoolean(),
     ],
     async (req, res, next) => {
         try {
-            const { transcript } = req.body;
+            const { transcript, stream } = req.body;
 
-            const result = await aiService.processVoiceCommand(transcript, req.user.id);
+            if (stream) {
+                // Set headers for streaming
+                res.setHeader('Content-Type', 'text/event-stream');
+                res.setHeader('Cache-Control', 'no-cache');
+                res.setHeader('Connection', 'keep-alive');
 
-            res.json({
-                success: true,
-                data: result,
-            });
+                const onToken = (token) => {
+                    res.write(`data: ${JSON.stringify({ token })}\n\n`);
+                };
+
+                const result = await aiService.processVoiceCommand(transcript, req.user.id, onToken);
+                
+                res.write(`data: ${JSON.stringify({ final: true, ...result })}\n\n`);
+                res.end();
+            } else {
+                const result = await aiService.processVoiceCommand(transcript, req.user.id);
+
+                res.json({
+                    success: true,
+                    data: result,
+                });
+            }
         } catch (error) {
             next(error);
         }

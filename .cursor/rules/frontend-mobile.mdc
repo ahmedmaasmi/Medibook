@@ -1,0 +1,175 @@
+---
+name: frontend-mobile
+description: Mobile frontend development rules for Flutter healthcare app
+---
+
+# Overview
+
+This document contains development guidelines specifically for the Flutter mobile frontend of the healthcare appointment booking system. The mobile app provides patients and doctors with native mobile experiences for appointment booking, management, and voice-enabled scheduling.
+
+## Code Review Checklist
+
+### Flutter Best Practices
+- Ensure proper widget lifecycle management and dispose resources correctly
+- Use const constructors for immutable widgets to improve performance
+- Implement proper error boundaries and loading states for all async operations
+- Follow Flutter's recommended patterns for state management and data flow
+- Verify that all text strings are properly internationalized (i18n ready)
+- Check for proper null safety implementation across all Dart code
+- Ensure responsive design works across different screen sizes and orientations
+- Validate that all user inputs have proper validation and error handling
+
+### Mobile Performance
+- Minimize widget rebuilds by using appropriate keys and const constructors
+- Implement proper image optimization and caching strategies
+- Use efficient list rendering with ListView.builder for large datasets
+- Monitor and optimize app startup time and memory usage
+- Implement proper background task management to preserve battery life
+- Use platform-specific optimizations where appropriate (iOS/Android)
+
+### Accessibility & UX
+- Ensure minimum 4.5:1 color contrast ratio for text readability
+- Implement proper semantic labels for screen readers
+- Support dynamic text sizing for accessibility preferences
+- Provide haptic feedback for important user interactions
+- Ensure all interactive elements meet minimum touch target sizes (44x44pt)
+- Test voice-over/screen reader compatibility on both platforms
+- Implement proper focus management for keyboard navigation
+
+### Security & Privacy
+- Never store sensitive healthcare data in local storage or shared preferences
+- Implement proper token storage using flutter_secure_storage
+- Use certificate pinning for API communications
+- Implement proper session timeout and auto-logout functionality
+- Encrypt any cached appointment data appropriately
+- Follow platform-specific security guidelines for health data
+
+## Flutter Architecture Rules
+
+### State Management
+- Use Provider pattern for dependency injection and app-wide state
+- Implement proper separation between UI and business logic
+- Use ChangeNotifier for reactive UI updates
+- Consider using Riverpod for complex state management scenarios
+- Maintain clear boundaries between different feature modules
+- Implement proper error handling in state management layers
+
+### API Integration
+- Use consistent error handling patterns for all API calls
+- Implement proper retry logic for network failures
+- Cache API responses appropriately for offline capabilities
+- Use proper HTTP status code handling and user feedback
+- Implement request/response logging for debugging (dev builds only)
+- Handle network connectivity changes gracefully
+
+### Widget Architecture
+- Create reusable widget components following atomic design principles
+- Use composition over inheritance for widget customization
+- Implement proper widget keys for list items and state preservation
+- Follow consistent naming conventions for custom widgets
+- Separate presentation logic from business logic
+- Use custom painters judiciously and only when necessary
+
+## Voice Integration Rules
+
+### Speech-to-Text
+- Handle microphone permissions properly with clear user messaging
+- Implement proper error states for speech recognition failures
+- Provide visual feedback during voice recording
+- Support voice commands in multiple languages if required
+- Handle background noise and poor audio quality gracefully
+- Implement timeout mechanisms for voice sessions
+
+### Voice Processing
+- Process voice commands on-device when possible for privacy
+- Implement proper fallback to server-side processing when needed
+- Cache voice recognition results for better UX
+- Provide clear visual indicators for voice processing states
+- Handle network-dependent voice features gracefully
+
+## Platform-Specific Rules
+
+### iOS Development
+- Follow Apple's Human Interface Guidelines for healthcare apps
+- Implement proper iOS permission dialogs with clear explanations
+- Use iOS-specific UI components where appropriate (Cupertino widgets)
+- Handle iOS background refresh and notification permissions
+- Implement proper iOS app lifecycle management
+- Follow App Store Review Guidelines for medical apps
+
+### Android Development
+- Follow Material Design 3 guidelines for consistent UX
+- Implement proper Android permission handling with runtime requests
+- Handle Android's complex activity lifecycle properly
+- Implement proper Android notification channels
+- Follow Google Play Store policies for health apps
+- Optimize for various Android device configurations
+
+## Testing & Quality Assurance
+
+### Unit Testing
+- Write unit tests for all business logic and utility functions
+- Mock external dependencies (API calls, platform services)
+- Test error conditions and edge cases thoroughly
+- Maintain test coverage above 80% for critical business logic
+- Use descriptive test names that explain the behavior being tested
+
+### Integration Testing
+- Test complete user flows end-to-end
+- Verify API integration works correctly
+- Test offline functionality and data synchronization
+- Validate platform-specific features work correctly
+- Test voice integration features thoroughly
+
+### UI Testing
+- Test on multiple device sizes and orientations
+- Verify accessibility features work correctly
+- Test with TalkBack/VoiceOver enabled
+- Validate dark mode compatibility
+- Test with different text size settings
+
+## Deployment & Distribution
+
+### Build Configuration
+- Use different build flavors for development, staging, and production
+- Configure proper app icons and splash screens for each environment
+- Implement proper versioning strategy (semantic versioning)
+- Configure platform-specific build settings correctly
+- Set up proper code signing for both platforms
+
+### App Store Guidelines
+- Prepare comprehensive app store descriptions
+- Create appropriate screenshots for different device sizes
+- Implement proper privacy policy and terms of service
+- Prepare for app store review processes (especially for health apps)
+- Set up proper crash reporting and analytics (privacy-compliant)
+
+### Monitoring & Analytics
+- Implement crash reporting with user privacy in mind
+- Track user engagement metrics without compromising privacy
+- Monitor app performance and battery usage
+- Set up proper logging for production issues
+- Implement user feedback mechanisms
+
+## Development Practices
+
+### Code Quality
+- Follow Dart style guidelines and use dartfmt
+- Use meaningful variable and function names
+- Write comprehensive documentation for public APIs
+- Implement proper error handling with user-friendly messages
+- Use Flutter's built-in linting rules
+
+### Version Control
+- Use feature branches for all development work
+- Write clear, descriptive commit messages
+- Keep pull requests focused on single features
+- Review code thoroughly before merging
+- Maintain clean git history
+
+### Performance Monitoring
+- Profile app performance regularly during development
+- Monitor memory usage and identify leaks
+- Optimize bundle size and app startup time
+- Test on lower-end devices to ensure broad compatibility
+- Implement performance budgets for key metrics

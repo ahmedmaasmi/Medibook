@@ -65,6 +65,56 @@ class ApiClient {
     delete<T>(endpoint: string) {
         return this.request<T>(endpoint, { method: 'DELETE' });
     }
+
+    async stream(endpoint: string, body: unknown, onToken: (token: string) => void, onComplete?: (data: any) => void) {
+        const response = await fetch(`${this.baseUrl}${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                ...this.getAuthHeaders(),
+            },
+            body: JSON.stringify({ ...body as object, stream: true }),
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.message || 'An error occurred');
+        }
+
+        const reader = response.body?.getReader();
+        const decoder = new TextDecoder();
+
+        if (!reader) throw new Error('Response body is not readable');
+
+        let partialData = '';
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = (partialData + chunk).split('\n');
+            partialData = lines.pop() || '';
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const dataStr = line.slice(6);
+                    if (dataStr === '[DONE]') break;
+                    try {
+                        const data = JSON.parse(dataStr);
+                        if (data.token) {
+                            onToken(data.token);
+                        }
+                        if (data.final && onComplete) {
+                            onComplete(data);
+                        }
+                    } catch (e) {
+                        console.error('Error parsing stream data:', e);
+                    }
+                }
+            }
+        }
+    }
 }
 
 export const api = new ApiClient(API_URL);
@@ -130,8 +180,20 @@ export const voiceApi = {
     process: (transcript: string) =>
         api.post<{ success: boolean; data: VoiceResponse }>('/voice/process', { transcript }),
 
+    streamProcess: (transcript: string, onToken: (token: string) => void, onComplete?: (data: any) => void) =>
+        api.stream('/voice/process', { transcript }, onToken, onComplete),
+
     extractIntent: (transcript: string) =>
         api.post<{ success: boolean; data: { intent: Intent } }>('/voice/extract-intent', { transcript }),
+};
+
+// Chat API
+export const chatApi = {
+    message: (message: string) =>
+        api.post<{ success: boolean; data: ChatResponse }>('/chat/message', { message }),
+
+    streamMessage: (message: string, onToken: (token: string) => void, onComplete?: (data: any) => void) =>
+        api.stream('/chat/message', { message }, onToken, onComplete),
 };
 
 // Calendar API
@@ -266,6 +328,14 @@ export interface VoiceResponse {
     intent: string;
     message: string;
     data?: unknown;
+}
+
+export interface ChatResponse {
+    success: boolean;
+    bot_message: string;
+    suggested_specialty: string | null;
+    doctors: Doctor[];
+    intent: string;
 }
 
 export interface Intent {

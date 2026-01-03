@@ -1,0 +1,70 @@
+---
+name: base
+description: Base rules for healthcare appointment booking system
+---
+
+# Overview
+
+This is a healthcare appointment booking system with Node.js/Express backend, Next.js web frontend, and Flutter mobile app. The system manages doctor appointments, user authentication, and calendar availability.
+
+## Code Review Checklist
+
+Consider data flow and explain any new patterns and why they are used.
+
+Note any changes that could affect infrastructure.
+
+Account for empty, loading, error, and offline states in the UI.
+
+Review frontend changes for accessibility (keyboard navigation, focus management, ARIA roles, color contrast).
+
+For public API changes, ensure backward compatibility or increment the API version.
+
+Avoid unnecessary dependencies; if a heavy dependency is added, consider inlining a minimal version.
+
+Add high-quality tests; prefer integration tests for user flows over numerous low-quality tests.
+
+Check for schema changes that may require a database migration.
+
+Review changes to authentication flows or permissions; run a security review.
+
+If using feature flags, determine if a new flag is needed for this change.
+
+If i18n is set up, verify that new strings are localized and new routes are internationalized.
+
+Identify places where caching could be used.
+
+Ensure backend changes include critical observability and logging.
+
+## Healthcare-Specific Rules
+
+- All patient data handling must comply with healthcare privacy regulations
+- Implement proper audit logging for all patient data access and modifications
+- Use secure communication protocols for all healthcare-related data transmission
+- Validate all medical appointment data thoroughly before processing
+- Implement proper error handling that doesn't expose sensitive patient information
+- Ensure appointment scheduling logic prevents double-booking and respects doctor availability
+- Implement proper timezone handling for international healthcare providers
+- Add rate limiting to prevent appointment booking abuse
+- Use encrypted storage for all sensitive healthcare data
+- Implement proper session management with automatic logout for security
+
+## Architecture Rules
+
+- Maintain separation between client, doctor, and admin user roles
+- Use consistent API response formats across all endpoints
+- Implement proper error boundaries in React components
+- Use TypeScript interfaces for all data models across frontend and backend
+- Follow RESTful API conventions for all backend routes
+- Implement proper state management patterns in both web and mobile apps
+- Use environment-specific configuration management
+- Implement proper logging and monitoring for production deployments
+
+## Development Practices
+
+- Write meaningful commit messages following conventional commits format
+- Use feature branches for all development work
+- Implement comprehensive error handling and user feedback
+- Test all user flows end-to-end before deployment
+- Maintain consistent code formatting across all platforms
+- Document all API endpoints and data models
+- Implement proper version control for mobile app releases

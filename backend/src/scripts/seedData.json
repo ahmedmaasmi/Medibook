@@ -17,6 +17,22 @@
             "role": "doctor"
         },
         {
+            "email": "dr.wilson@example.com",
+            "password": "Password123!",
+            "firstName": "Michael",
+            "lastName": "Wilson",
+            "phone": "+1122334455",
+            "role": "doctor"
+        },
+        {
+            "email": "dr.garcia@example.com",
+            "password": "Password123!",
+            "firstName": "Elena",
+            "lastName": "Garcia",
+            "phone": "+1556677889",
+            "role": "doctor"
+        },
+        {
             "email": "client1@example.com",
             "password": "Password123!",
             "firstName": "Alice",
@@ -30,6 +46,14 @@
             "firstName": "Bob",
             "lastName": "Builder",
             "phone": "+1554433221",
+            "role": "client"
+        },
+        {
+            "email": "ahmed@test.com",
+            "password": "Password123!",
+            "firstName": "Ahmed",
+            "lastName": "Test",
+            "phone": "+123000999",
             "role": "client"
         }
     ],
@@ -49,6 +73,22 @@
             "bio": "Expert in skin care and dermatological procedures.",
             "consultationFee": 120.00,
             "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "dr.wilson@example.com",
+            "specialization": "Pediatrics",
+            "licenseNumber": "LIC11223",
+            "bio": "Dedicated pediatrician focused on child health and development.",
+            "consultationFee": 100.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "dr.garcia@example.com",
+            "specialization": "Neurology",
+            "licenseNumber": "LIC44556",
+            "bio": "Specialist in neurological disorders and brain health.",
+            "consultationFee": 200.00,
+            "yearsOfExperience": 12
         }
     ],
     "availabilities": [
@@ -79,6 +119,27 @@
             "startTime": "08:30:00",
             "endTime": "16:30:00",
             "slotDuration": 45
+        },
+        {
+            "doctorEmail": "dr.wilson@example.com",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dr.wilson@example.com",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dr.garcia@example.com",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
         }
     ]
 }

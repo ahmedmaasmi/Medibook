@@ -4,7 +4,9 @@ import '../../models/models.dart';
 import '../../services/api_service.dart';
 
 class AppointmentsScreen extends StatefulWidget {
-  const AppointmentsScreen({super.key});
+  final String initialFilter;
+
+  const AppointmentsScreen({super.key, this.initialFilter = 'upcoming'});
 
   @override
   State<AppointmentsScreen> createState() => _AppointmentsScreenState();
@@ -13,11 +15,12 @@ class AppointmentsScreen extends StatefulWidget {
 class _AppointmentsScreenState extends State<AppointmentsScreen> {
   List<Appointment> _appointments = [];
   bool _isLoading = true;
-  String _filter = 'upcoming';
+  late String _filter;
 
   @override
   void initState() {
     super.initState();
+    _filter = widget.initialFilter;
     _loadAppointments();
   }
 
@@ -25,9 +28,21 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
     setState(() => _isLoading = true);
     try {
       final today = DateTime.now().toIso8601String().split('T')[0];
-      final appointments = await ApiService.getAppointments(
-        fromDate: _filter == 'upcoming' ? today : null,
-      );
+
+      List<Appointment> appointments;
+      switch (_filter) {
+        case 'upcoming':
+          appointments = await ApiService.getAppointments(fromDate: today);
+          break;
+        case 'past':
+          appointments = await ApiService.getAppointments(toDate: today);
+          break;
+        case 'all':
+        default:
+          appointments = await ApiService.getAppointments();
+          break;
+      }
+
       setState(() {
         _appointments = appointments;
         _isLoading = false;
@@ -43,10 +58,13 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1E293B),
         title: const Text('Cancel Appointment', style: TextStyle(color: Colors.white)),
-        content: const Text('Are you sure you want to cancel this appointment?', style: TextStyle(color: Colors.white70)),
+        content: const Text('Are you sure you want to cancel this appointment? This action cannot be undone.', style: TextStyle(color: Colors.white70)),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('No')),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Yes', style: TextStyle(color: Colors.red))),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Keep Appointment')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Cancel Appointment', style: TextStyle(color: Color(0xFFEF4444))),
+          ),
         ],
       ),
     );
@@ -55,11 +73,37 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       try {
         await ApiService.cancelAppointment(id);
         _loadAppointments();
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Appointment cancelled successfully'),
+            backgroundColor: Color(0xFF22C55E),
+          ),
+        );
       } catch (e) {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to cancel: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to cancel: $e')),
+        );
       }
     }
+  }
+
+  void _rescheduleAppointment(Appointment apt) {
+    // Navigate back to booking screen with pre-selected doctor
+    Navigator.pop(context); // Go back to dashboard
+    // This would ideally pass the doctor info to the booking screen
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Navigate to booking screen to reschedule')),
+    );
+  }
+
+  void _bookFollowUp(Appointment apt) {
+    // Navigate to booking screen with the same doctor
+    Navigator.pop(context); // Go back to dashboard
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Navigate to booking screen to schedule follow-up')),
+    );
   }
 
   Color _getStatusColor(String status) {
@@ -95,7 +139,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                   
                   // Filter Tabs
                   Row(
-                    children: ['upcoming', 'all'].map((filter) => Padding(
+                    children: ['upcoming', 'past', 'all'].map((filter) => Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: ChoiceChip(
                         label: Text(filter[0].toUpperCase() + filter.substring(1)),
@@ -145,48 +189,202 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    // Header with doctor info and status
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('Dr. ${apt.doctor?.user.lastName ?? 'Unknown'}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
                                         Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                          width: 40,
+                                          height: 40,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            gradient: LinearGradient(
+                                              colors: [Color(0xFFAC1ED6), Color(0xFFC26E73)],
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              apt.doctor?.user.initials ?? 'DR',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Dr. ${apt.doctor?.user.lastName ?? 'Unknown'}',
+                                                style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                apt.doctor?.specialization ?? 'General Practice',
+                                                style: TextStyle(
+                                                  color: Colors.white.withOpacity(0.6),
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                           decoration: BoxDecoration(
                                             color: _getStatusColor(apt.status).withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: _getStatusColor(apt.status).withOpacity(0.5),
+                                            ),
                                           ),
-                                          child: Text(apt.status, style: TextStyle(fontSize: 12, color: _getStatusColor(apt.status))),
+                                          child: Text(
+                                            apt.status.toUpperCase(),
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: _getStatusColor(apt.status),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 4),
-                                    Text(apt.doctor?.specialization ?? '', style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12)),
-                                    const SizedBox(height: 12),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.calendar_today, size: 16, color: Colors.white.withOpacity(0.5)),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          DateFormat('EEEE, MMM d, y').format(DateTime.parse(apt.appointmentDate)),
-                                          style: TextStyle(color: Colors.white.withOpacity(0.7)),
-                                        ),
-                                      ],
+
+                                    const SizedBox(height: 16),
+
+                                    // Appointment details
+                                    Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.05),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.calendar_today,
+                                                size: 18,
+                                                color: const Color(0xFFAC1ED6),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(
+                                                DateFormat('EEEE, MMMM d, yyyy').format(DateTime.parse(apt.appointmentDate)),
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.schedule,
+                                                size: 18,
+                                                color: const Color(0xFFAC1ED6),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(
+                                                '${apt.startTime.substring(0, 5)} - ${apt.endTime.substring(0, 5)}',
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          if (apt.reason != null && apt.reason!.isNotEmpty) ...[
+                                            const SizedBox(height: 8),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Icon(
+                                                  Icons.description,
+                                                  size: 18,
+                                                  color: const Color(0xFFAC1ED6),
+                                                ),
+                                                const SizedBox(width: 8),
+                                                Expanded(
+                                                  child: Text(
+                                                    apt.reason!,
+                                                    style: TextStyle(
+                                                      color: Colors.white.withOpacity(0.8),
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                apt.bookedVia == 'mobile' ? Icons.phone_android : Icons.web,
+                                                size: 18,
+                                                color: Colors.white.withOpacity(0.5),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(
+                                                'Booked via ${apt.bookedVia}',
+                                                style: TextStyle(
+                                                  color: Colors.white.withOpacity(0.5),
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.access_time, size: 16, color: Colors.white.withOpacity(0.5)),
-                                        const SizedBox(width: 8),
-                                        Text('${apt.startTime.substring(0, 5)} - ${apt.endTime.substring(0, 5)}', style: TextStyle(color: Colors.white.withOpacity(0.7))),
-                                      ],
-                                    ),
+
+                                    // Action buttons
                                     if (apt.status == 'confirmed') ...[
-                                      const SizedBox(height: 12),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          TextButton.icon(
+                                            onPressed: () => _rescheduleAppointment(apt),
+                                            icon: Icon(Icons.edit_calendar, size: 16, color: const Color(0xFFF59E0B)),
+                                            label: const Text(
+                                              'Reschedule',
+                                              style: TextStyle(color: Color(0xFFF59E0B)),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          TextButton.icon(
+                                            onPressed: () => _cancelAppointment(apt.id),
+                                            icon: Icon(Icons.cancel, size: 16, color: const Color(0xFFEF4444)),
+                                            label: const Text(
+                                              'Cancel',
+                                              style: TextStyle(color: Color(0xFFEF4444)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ] else if (apt.status == 'completed') ...[
+                                      const SizedBox(height: 16),
                                       Align(
                                         alignment: Alignment.centerRight,
-                                        child: TextButton(
-                                          onPressed: () => _cancelAppointment(apt.id),
-                                          child: const Text('Cancel', style: TextStyle(color: Colors.red)),
+                                        child: TextButton.icon(
+                                          onPressed: () => _bookFollowUp(apt),
+                                          icon: Icon(Icons.refresh, size: 16, color: const Color(0xFF22C55E)),
+                                          label: const Text(
+                                            'Book Follow-up',
+                                            style: TextStyle(color: Color(0xFF22C55E)),
+                                          ),
                                         ),
                                       ),
                                     ],
