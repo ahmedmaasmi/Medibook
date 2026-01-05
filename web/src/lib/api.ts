@@ -10,13 +10,18 @@ interface RequestOptions {
 
 class ApiClient {
     private baseUrl: string;
+    private token: string | null = null;
 
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
     }
 
+    setToken(token: string | null) {
+        this.token = token;
+    }
+
     private getAuthHeaders(): Record<string, string> {
-        const token = Cookies.get('token');
+        const token = this.token || Cookies.get('token');
         return token ? { Authorization: `Bearer ${token}` } : {};
     }
 
@@ -30,6 +35,7 @@ class ApiClient {
                 ...this.getAuthHeaders(),
                 ...headers,
             },
+            credentials: 'include',
         };
 
         if (body) {
@@ -66,7 +72,7 @@ class ApiClient {
         return this.request<T>(endpoint, { method: 'DELETE' });
     }
 
-    async stream(endpoint: string, body: unknown, onToken: (token: string) => void, onComplete?: (data: any) => void) {
+    async stream(endpoint: string, body: unknown, onToken: (token: string) => void, onComplete?: (data: any) => void, signal?: AbortSignal) {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
             method: 'POST',
             headers: {
@@ -74,6 +80,8 @@ class ApiClient {
                 ...this.getAuthHeaders(),
             },
             body: JSON.stringify({ ...body as object, stream: true }),
+            credentials: 'include',
+            signal,
         });
 
         if (!response.ok) {
@@ -192,8 +200,8 @@ export const chatApi = {
     message: (message: string) =>
         api.post<{ success: boolean; data: ChatResponse }>('/chat/message', { message }),
 
-    streamMessage: (message: string, onToken: (token: string) => void, onComplete?: (data: any) => void) =>
-        api.stream('/chat/message', { message }, onToken, onComplete),
+    streamMessage: (message: string, onToken: (token: string) => void, onComplete?: (data: any) => void, signal?: AbortSignal) =>
+        api.stream('/chat/message', { message }, onToken, onComplete, signal),
 };
 
 // Calendar API
@@ -336,6 +344,10 @@ export interface ChatResponse {
     suggested_specialty: string | null;
     doctors: Doctor[];
     intent: string;
+    data?: {
+        slots?: TimeSlot[];
+        doctor?: Doctor;
+    };
 }
 
 export interface Intent {

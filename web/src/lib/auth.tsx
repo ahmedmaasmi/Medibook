@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import Cookies from 'js-cookie';
-import { authApi, User, DoctorProfile } from './api';
+import { authApi, User, DoctorProfile, api } from './api';
 
 interface AuthContextType {
     user: User | null;
@@ -25,9 +25,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const token = Cookies.get('token');
         if (!token) {
             setIsLoading(false);
+            api.setToken(null);
             return;
         }
 
+        api.setToken(token);
         try {
             const response = await authApi.getProfile();
             setUser(response.data.user);
@@ -35,6 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } catch (error) {
             console.error('Failed to fetch user:', error);
             Cookies.remove('token');
+            api.setToken(null);
         } finally {
             setIsLoading(false);
         }
@@ -46,7 +49,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const login = async (email: string, password: string) => {
         const response = await authApi.login(email, password);
-        Cookies.set('token', response.data.token, { expires: 7 });
+        const token = response.data.token;
+        Cookies.set('token', token, { expires: 7 });
+        api.setToken(token);
         setUser(response.data.user);
         if (response.data.user.role === 'doctor') {
             await refreshUser();
@@ -55,6 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const logout = () => {
         Cookies.remove('token');
+        api.setToken(null);
         setUser(null);
         setDoctorProfile(null);
     };

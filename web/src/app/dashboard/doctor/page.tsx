@@ -14,6 +14,7 @@ export default function DoctorDashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!user) return;
             try {
                 const today = new Date().toISOString().split('T')[0];
                 const [allAppts, calStatus] = await Promise.all([
@@ -33,7 +34,7 @@ export default function DoctorDashboard() {
             }
         };
         fetchData();
-    }, []);
+    }, [user]);
 
     if (isLoading) {
         return (

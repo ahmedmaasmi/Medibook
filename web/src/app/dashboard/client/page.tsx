@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 
 export default function ClientDashboard() {
     const { user } = useAuth();
-    const { activeChat, addMessageToChat, appendTokenToLastMessage, activeChatId, createNewChat } = useChat();
+    const { activeChat, addMessageToChat, appendTokenToLastMessage, updateLastMessage, activeChatId, createNewChat } = useChat();
     const [appointments, setAppointments] = useState<Appointment[]>([]);
     const [doctors, setDoctors] = useState<Doctor[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +17,7 @@ export default function ClientDashboard() {
     const [isSending, setIsSending] = useState(false);
     const [lastAiResponse, setLastAiResponse] = useState<ChatResponse | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const abortControllerRef = useRef<AbortController | null>(null);
 
     const messages = activeChat?.messages || [];
 
@@ -30,6 +31,7 @@ export default function ClientDashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!user) return;
             try {
                 const [apptRes, docRes] = await Promise.all([
                     appointmentsApi.getAll({ fromDate: new Date().toISOString().split('T')[0] }),
@@ -44,7 +46,15 @@ export default function ClientDashboard() {
             }
         };
         fetchData();
-    }, []);
+    }, [user]);
+
+    const handleStopChat = () => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+            setIsSending(false);
+        }
+    };
 
     const handleSendMessage = async (text: string = inputValue) => {
         if (!text.trim() || isSending) return;
@@ -59,6 +69,9 @@ export default function ClientDashboard() {
         setInputValue('');
         setIsSending(true);
         setLastAiResponse(null); // Clear previous suggestions
+
+        // Create new AbortController for this request
+        abortControllerRef.current = new AbortController();
 
         try {
             // Add an empty assistant message to be filled by the stream
@@ -80,13 +93,24 @@ export default function ClientDashboard() {
                         const apptRes = await appointmentsApi.getAll({ fromDate: new Date().toISOString().split('T')[0] });
                         setAppointments(apptRes.data.appointments.slice(0, 3));
                     }
-                }
+                },
+                abortControllerRef.current.signal
             );
-        } catch (error) {
-            console.error('Failed to send message:', error);
-            addMessageToChat(currentChatId, { role: 'assistant', content: 'Sorry, I encountered an error processing your request.' });
+        } catch (error: any) {
+            if (error.name === 'AbortError') {
+                console.log('Chat stream aborted');
+                if (currentChatId) {
+                    updateLastMessage(currentChatId, 'Chat stopped.');
+                }
+            } else {
+                console.error('Failed to send message:', error);
+                if (currentChatId) {
+                    updateLastMessage(currentChatId, 'Sorry, I encountered an error processing your request.');
+                }
+            }
         } finally {
             setIsSending(false);
+            abortControllerRef.current = null;
         }
     };
 
@@ -146,12 +170,16 @@ export default function ClientDashboard() {
             </header>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col items-center max-w-2xl mx-auto w-full text-center transition-all duration-500">
+            <div className={`flex-1 flex flex-col items-center mx-auto w-full text-center transition-all duration-700 ${
+                messages.length > 0 ? 'max-w-5xl' : 'max-w-2xl'
+            }`}>
                 
-                {/* Orb - Only show when no messages or keep it small? Let's keep it but maybe adjust size if chat is active */}
-                <div className={`orb-container transition-all duration-700 ${messages.length > 0 ? 'scale-50 mb-2' : 'mb-8'}`}>
-                    <div className="orb"></div>
-                </div>
+                {/* Orb */}
+                {messages.length === 0 && (
+                    <div className="orb-container mb-8 animate-in fade-in zoom-in duration-700">
+                        <div className="orb"></div>
+                    </div>
+                )}
 
                 <div className={`transition-all duration-500 overflow-hidden w-full ${
                     messages.length > 0 ? 'opacity-0 max-h-0' : 'opacity-100 max-h-20 mb-8'
@@ -162,27 +190,34 @@ export default function ClientDashboard() {
                 </div>
 
                 {messages.length > 0 && (
-                    <div className="w-full flex-1 overflow-y-auto mb-8 pr-2 custom-scrollbar transition-all duration-500 min-h-[300px] flex flex-col">
-                        <div className="flex flex-col gap-4 mt-auto">
+                    <div className="w-full flex-1 overflow-y-auto mb-8 pr-2 custom-scrollbar transition-all duration-500 min-h-[400px] flex flex-col">
+                        <div className="flex flex-col gap-6 mt-auto">
                             {messages.map((msg, i) => (
-                                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[80%] px-4 py-2 rounded-2xl text-left ${
+                                <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                    <div className={`max-w-[85%] px-5 py-3 rounded-2xl text-left transition-all duration-300 ${
                                         msg.role === 'user' 
-                                            ? 'bg-primary-500 text-white rounded-tr-none' 
-                                            : 'bg-[#1C1A26] border border-white/10 text-white/90 rounded-tl-none'
+                                            ? 'bg-primary-500 text-white rounded-tr-none shadow-lg shadow-primary-500/10' 
+                                            : 'bg-gradient-to-br from-blue-600/20 via-blue-500/10 to-transparent border border-blue-400/20 text-white/90 rounded-tl-none shadow-[0_0_20px_rgba(59,130,246,0.1)] backdrop-blur-sm'
                                     }`}>
-                                        <p className="text-sm font-light leading-relaxed">{msg.content}</p>
+                                        <p className={`text-sm leading-relaxed ${msg.role === 'assistant' ? 'font-normal' : 'font-light'}`}>{msg.content}</p>
                                     </div>
                                 </div>
                             ))}
                             {isSending && (
-                                <div className="flex justify-start">
-                                    <div className="bg-[#1C1A26] border border-white/10 px-4 py-2 rounded-2xl rounded-tl-none">
-                                        <div className="flex gap-1">
-                                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce"></div>
-                                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                                <div className="flex flex-col items-start gap-2">
+                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-400/20 rounded-full">
+                                        <div className="flex gap-1 mr-2">
+                                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></div>
+                                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
                                         </div>
+                                        <span className="text-[10px] font-medium text-blue-300 uppercase tracking-wider">AI is processing</span>
+                                        <button 
+                                            onClick={handleStopChat}
+                                            className="ml-2 px-2 py-0.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 text-[9px] font-bold rounded-md transition-colors border border-red-500/30"
+                                        >
+                                            STOP
+                                        </button>
                                     </div>
                                 </div>
                             )}
@@ -192,20 +227,22 @@ export default function ClientDashboard() {
                 )}
 
                 {/* AI Suggestions (if any) */}
-                {lastAiResponse && lastAiResponse.suggested_specialty && (
+                {lastAiResponse && (lastAiResponse.suggested_specialty || (lastAiResponse.data && lastAiResponse.data.slots)) && (
                     <div className="w-full mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <div className="bg-accent-500/10 border border-accent-500/20 rounded-2xl p-4 text-left">
-                            <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center text-accent-400">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                        <div className="bg-accent-500/10 border border-accent-500/20 rounded-2xl p-4 text-left backdrop-blur-md">
+                            {lastAiResponse.suggested_specialty && (
+                                <div className="flex items-center gap-2 mb-3">
+                                    <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center text-accent-400">
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-medium text-sm">Suggested Specialty: {lastAiResponse.suggested_specialty}</h4>
+                                        <p className="text-white/40 text-xs">Based on your described symptoms</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="text-white font-medium text-sm">Suggested Specialty: {lastAiResponse.suggested_specialty}</h4>
-                                    <p className="text-white/40 text-xs">Based on your described symptoms</p>
-                                </div>
-                            </div>
+                            )}
                             
                             {lastAiResponse.doctors && lastAiResponse.doctors.length > 0 && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
@@ -229,6 +266,28 @@ export default function ClientDashboard() {
                                             </div>
                                         </Link>
                                     ))}
+                                </div>
+                            )}
+
+                            {lastAiResponse.data?.slots && lastAiResponse.data.slots.length > 0 && (
+                                <div className="mt-4 pt-4 border-t border-white/5">
+                                    <h4 className="text-white/80 font-medium text-sm mb-3 flex items-center gap-2">
+                                        <svg className="w-4 h-4 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Available Times for Dr. {lastAiResponse.data.doctor?.user?.lastName}
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {lastAiResponse.data.slots.slice(0, 8).map((slot, idx) => (
+                                            <button 
+                                                key={idx}
+                                                className="px-3 py-1.5 bg-primary-500/20 hover:bg-primary-500/40 border border-primary-500/30 rounded-lg text-primary-200 text-xs font-medium transition-all"
+                                                onClick={() => handleSendMessage(`Book appointment at ${slot.startTime.slice(0, 5)}`)}
+                                            >
+                                                {slot.startTime.slice(0, 5)}
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -303,34 +362,34 @@ export default function ClientDashboard() {
             </div>
 
             {/* Bottom Cards */}
-            <div className={`transition-all duration-700 overflow-hidden ${
-                messages.length > 0 ? 'opacity-0 max-h-0 mt-0' : 'opacity-100 max-h-[1000px] mt-16'
-            }`}>
-                <div className="grid md:grid-cols-3 gap-6">
-                    <Card 
-                        title="Recent Appointments" 
-                        icon="clock" 
-                        color="primary"
-                        items={appointments.length > 0 ? appointments.slice(0, 2).map(apt => (
-                            `Dr. ${apt.doctor?.user?.firstName} ${apt.doctor?.user?.lastName} - ${format(new Date(apt.appointmentDate), 'MMM d')}`
-                        )) : ['No recent appointments']}
-                    />
-                    <Card 
-                        title="Available Doctors" 
-                        icon="user" 
-                        color="accent"
-                        items={doctors.length > 0 ? doctors.slice(0, 2).map(doc => (
-                            `Dr. ${doc.user?.firstName} ${doc.user?.lastName}`
-                        )) : ['No doctors available']}
-                    />
-                    <Card 
-                        title="Health Assistant" 
-                        icon="code" 
-                        color="blue"
-                        items={['Check symptoms', 'Emergency contacts', 'Health tips']}
-                    />
+            {messages.length === 0 && (
+                <div className="mt-16 transition-all duration-700 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <Card 
+                            title="Recent Appointments" 
+                            icon="clock" 
+                            color="primary"
+                            items={appointments.length > 0 ? appointments.slice(0, 2).map(apt => (
+                                `Dr. ${apt.doctor?.user?.firstName} ${apt.doctor?.user?.lastName} - ${format(new Date(apt.appointmentDate), 'MMM d')}`
+                            )) : ['No recent appointments']}
+                        />
+                        <Card 
+                            title="Available Doctors" 
+                            icon="user" 
+                            color="accent"
+                            items={doctors.length > 0 ? doctors.slice(0, 2).map(doc => (
+                                `Dr. ${doc.user?.firstName} ${doc.user?.lastName}`
+                            )) : ['No doctors available']}
+                        />
+                        <Card 
+                            title="Health Assistant" 
+                            icon="code" 
+                            color="blue"
+                            items={['Check symptoms', 'Emergency contacts', 'Health tips']}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

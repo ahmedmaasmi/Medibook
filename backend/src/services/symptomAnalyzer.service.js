@@ -62,8 +62,8 @@ Expected JSON format:
             { role: 'system', content: systemPrompt },
             { role: 'user', content: sanitizedMessage },
         ], { 
-            temperature: 0.1, 
-            response_format: { type: "json_object" } 
+            temperature: 0.1,
+            max_tokens: 500
         });
 
         const data = await response.json();
@@ -71,11 +71,20 @@ Expected JSON format:
         
         let result;
         try {
-            // Try to parse JSON from the response
+            // Try to find JSON content within the response
             const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-            result = JSON.parse(jsonMatch ? jsonMatch[0] : responseText);
+            const jsonString = jsonMatch ? jsonMatch[0] : responseText;
+            
+            // If the JSON is truncated (missing closing brace), try to fix it
+            let sanitizedJson = jsonString.trim();
+            if (sanitizedJson.startsWith('{') && !sanitizedJson.endsWith('}')) {
+                console.warn('Detected truncated JSON response, attempting to close it.');
+                sanitizedJson += '}';
+            }
+            
+            result = JSON.parse(sanitizedJson);
         } catch (e) {
-            console.error('Failed to parse AI response as JSON:', responseText);
+            console.error('Failed to parse AI response as JSON. Response text:', responseText);
             throw new AppError('AI response format error', 500);
         }
 

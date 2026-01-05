@@ -24,6 +24,7 @@ interface ChatContextType {
     setActiveChat: (id: string | null) => void;
     addMessageToChat: (chatId: string, message: Omit<Message, 'timestamp'>) => void;
     appendTokenToLastMessage: (chatId: string, token: string) => void;
+    updateLastMessage: (chatId: string, content: string) => void;
     deleteChat: (id: string) => void;
     clearAllChats: () => void;
 }
@@ -119,6 +120,23 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
+    const updateLastMessage = (chatId: string, content: string) => {
+        setChats(prev => prev.map(chat => {
+            if (chat.id === chatId && chat.messages.length > 0) {
+                const updatedMessages = [...chat.messages];
+                const lastMessage = { ...updatedMessages[updatedMessages.length - 1], content };
+                updatedMessages[updatedMessages.length - 1] = lastMessage;
+                
+                return {
+                    ...chat,
+                    messages: updatedMessages,
+                    updatedAt: Date.now(),
+                };
+            }
+            return chat;
+        }));
+    };
+
     const deleteChat = (id: string) => {
         setChats(prev => prev.filter(chat => chat.id !== id));
         if (activeChatId === id) {
@@ -143,6 +161,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
             setActiveChat,
             addMessageToChat,
             appendTokenToLastMessage,
+            updateLastMessage,
             deleteChat,
             clearAllChats
         }}>

@@ -16,7 +16,7 @@ export default {
   
   openRouter: {
     apiKey: process.env.OPENROUTER_API_KEY,
-    model: 'allenai/olmo-3.1-32b-think:free',
+    model: 'openrouter/auto',
   },
   
   google: {

@@ -5,6 +5,10 @@ import { Op } from 'sequelize';
 
 // Helper for OpenRouter API calls using fetch following the requested template
 export const callOpenRouter = async (messages, options = {}) => {
+    if (!config.openRouter.apiKey) {
+        throw new Error('OPENROUTER_API_KEY is not configured. Please set it in your environment variables.');
+    }
+
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
