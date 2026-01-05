@@ -194,6 +194,20 @@ export default function ClientDashboard() {
                         <div className="flex flex-col gap-6 mt-auto">
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                    {msg.role === 'assistant' && (
+                                        <div className="flex items-center gap-2 mb-1.5 ml-1">
+                                            <div className="w-5 h-5 rounded-full relative overflow-hidden bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                                                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 opacity-80"></div>
+                                                <div className="absolute top-[15%] left-[15%] w-[30%] h-[30%] rounded-full bg-white/40 blur-[1px]"></div>
+                                            </div>
+                                            <span className="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Blop</span>
+                                        </div>
+                                    )}
+                                    {msg.role === 'user' && (
+                                        <div className="flex items-center gap-2 mb-1.5 mr-1">
+                                            <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">You</span>
+                                        </div>
+                                    )}
                                     <div className={`max-w-[85%] px-5 py-3 rounded-2xl text-left transition-all duration-300 ${
                                         msg.role === 'user' 
                                             ? 'bg-primary-500 text-white rounded-tr-none shadow-lg shadow-primary-500/10' 
@@ -205,19 +219,19 @@ export default function ClientDashboard() {
                             ))}
                             {isSending && (
                                 <div className="flex flex-col items-start gap-2">
-                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-400/20 rounded-full">
+                                    <div className="flex items-center gap-2 mb-0.5 ml-1">
+                                        <div className="w-4 h-4 rounded-full relative overflow-hidden bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shadow-[0_0_8px_rgba(59,130,246,0.3)] animate-pulse">
+                                            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 opacity-80"></div>
+                                        </div>
+                                        <span className="text-[9px] font-bold text-blue-300/60 uppercase tracking-widest">Blop</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-400/20 rounded-full animate-blop">
                                         <div className="flex gap-1 mr-2">
                                             <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></div>
                                             <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
                                             <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
                                         </div>
-                                        <span className="text-[10px] font-medium text-blue-300 uppercase tracking-wider">AI is processing</span>
-                                        <button 
-                                            onClick={handleStopChat}
-                                            className="ml-2 px-2 py-0.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 text-[9px] font-bold rounded-md transition-colors border border-red-500/30"
-                                        >
-                                            STOP
-                                        </button>
+                                        <span className="text-[10px] font-medium text-blue-300 uppercase tracking-wider">Processing...</span>
                                     </div>
                                 </div>
                             )}
@@ -346,15 +360,27 @@ export default function ClientDashboard() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                                     </svg>
                                 </Link>
-                                <button 
-                                    onClick={() => handleSendMessage()}
-                                    disabled={!inputValue.trim() || isSending}
-                                    className="w-8 h-8 rounded-full bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-white transition-colors shadow-lg shadow-primary-500/20"
-                                >
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                                    </svg>
-                                </button>
+                                {isSending ? (
+                                    <button 
+                                        onClick={handleStopChat}
+                                        className="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 flex items-center justify-center transition-colors border border-red-500/30"
+                                        title="Stop generating"
+                                    >
+                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <rect x="6" y="6" width="12" height="12" rx="1" />
+                                        </svg>
+                                    </button>
+                                ) : (
+                                    <button 
+                                        onClick={() => handleSendMessage()}
+                                        disabled={!inputValue.trim() || isSending}
+                                        className="w-8 h-8 rounded-full bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-white transition-colors shadow-lg shadow-primary-500/20"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                        </svg>
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
