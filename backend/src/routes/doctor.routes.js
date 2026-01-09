@@ -2,6 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { Doctor, User, Availability } from '../models/index.js';
+import { upsertDoctorEmbedding } from '../services/rag/doctorRag.service.js';
 
 const router = express.Router();
 
@@ -88,6 +89,12 @@ router.put('/profile',
             }
 
             await doctor.update(req.body);
+
+            // Trigger embedding update
+            // We don't await this to keep response fast, but logging errors is important.
+            upsertDoctorEmbedding(doctor.id).catch(err => {
+                console.error(`Background embedding update failed for doctor ${doctor.id}:`, err);
+            });
 
             res.json({
                 success: true,

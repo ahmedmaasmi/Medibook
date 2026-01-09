@@ -17,6 +17,7 @@ export default {
   openRouter: {
     apiKey: process.env.OPENROUTER_API_KEY,
     model: 'openrouter/auto',
+    embeddingModel: process.env.OPENROUTER_EMBEDDING_MODEL || 'openai/text-embedding-3-small',
   },
   
   google: {
