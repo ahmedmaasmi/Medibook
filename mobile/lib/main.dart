@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/forgot_password_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/voice_agent_screen.dart';
 import 'services/auth_service.dart';
 
 void main() async {
@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Blue Slime Auth',
+      title: 'Healthcare Voice Agent',
       theme: ThemeData(
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
         '/forgot-password': (context) => const ForgotPasswordScreen(),
-        '/home': (context) => const HomeScreen(),
+        '/home': (context) => const VoiceAgentScreen(),
       },
     );
   }
@@ -54,8 +54,16 @@ class AuthWrapper extends StatelessWidget {
           );
         }
         
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Text('Error: ${snapshot.error}'),
+            ),
+          );
+        }
+        
         if (snapshot.data == true) {
-          return const HomeScreen();
+          return const VoiceAgentScreen();
         } else {
           return const LoginScreen();
         }

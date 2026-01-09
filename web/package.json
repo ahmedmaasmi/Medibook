@@ -9,8 +9,8 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@react-three/drei": "^10.7.7",
-        "@react-three/fiber": "^8.18.0",
+        "@react-three/drei": "^9.121.0",
+        "@react-three/fiber": "^8.17.14",
         "date-fns": "^3.3.1",
         "js-cookie": "^3.0.5",
         "next": "^14.2.35",

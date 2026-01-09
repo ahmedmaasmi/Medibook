@@ -1,11 +1,18 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  // Use 10.0.2.2 for Android Emulator, localhost for iOS simulator
+  // Use 10.0.2.2 for Android Emulator, localhost for iOS simulator/Web
   // For production, this should be your server's URL
-  static const String baseUrl = 'http://10.0.2.2:3001/api';
+  static String get baseUrl {
+    if (kIsWeb) {
+      return 'http://localhost:3001/api';
+    }
+    // Android emulator
+    return 'http://10.0.2.2:3001/api';
+  }
 
   static const String tokenKey = 'auth_token';
   static const String userKey = 'user_data';

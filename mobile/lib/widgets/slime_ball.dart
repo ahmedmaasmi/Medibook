@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SlimeBall extends StatelessWidget {
-  const SlimeBall({super.key});
+  final String? message;
+  const SlimeBall({super.key, this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -56,45 +57,47 @@ class SlimeBall extends StatelessWidget {
         ),
         
         // The Speech Bubble
-        Positioned(
-          top: 0,
-          right: -80,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 4,
-                      offset: const Offset(2, 2),
+        if (message != null && message!.isNotEmpty)
+          Positioned(
+            top: 0,
+            right: -80,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 4,
+                        offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    message!,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
-                  ],
-                ),
-                child: const Text(
-                  "hello its blop",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
                   ),
                 ),
-              ),
-              // Little tail for the bubble
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: CustomPaint(
-                  painter: _TrianglePainter(Colors.white),
-                  size: const Size(10, 8),
+                // Little tail for the bubble
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: CustomPaint(
+                    painter: _TrianglePainter(Colors.white),
+                    size: const Size(10, 8),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
       ],
     );
   }

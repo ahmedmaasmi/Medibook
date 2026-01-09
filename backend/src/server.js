@@ -12,9 +12,11 @@ import './models/index.js';
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: false,
+}));
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001'],
+    origin: config.nodeEnv === 'development' ? true : (process.env.CORS_ORIGIN || ['http://localhost:3000', 'http://localhost:3001']),
     credentials: true,
 }));
 
