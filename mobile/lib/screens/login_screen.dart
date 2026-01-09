@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   final _authService = AuthService();
   bool _isLoading = false;
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = true);
 
-    final result = await _authService.login(email, password);
+    final result = await _authService.login(email, password, rememberMe: _rememberMe);
 
     if (mounted) {
       setState(() => _isLoading = false);
@@ -117,8 +118,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Checkbox(
-                        value: false,
-                        onChanged: (v) {},
+                        value: _rememberMe,
+                        onChanged: (value) {
+                          setState(() => _rememberMe = value ?? false);
+                        },
                         side: const BorderSide(color: Colors.white54),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                       ),

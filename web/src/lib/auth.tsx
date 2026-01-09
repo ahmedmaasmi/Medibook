@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { authApi, User, DoctorProfile, api } from './api';
 
@@ -20,10 +20,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [doctorProfile, setDoctorProfile] = useState<DoctorProfile | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const hasInitialized = useRef(false);
 
     const refreshUser = useCallback(async () => {
         const token = Cookies.get('token');
         if (!token) {
+            setUser(null);
+            setDoctorProfile(null);
             setIsLoading(false);
             api.setToken(null);
             return;
@@ -34,16 +37,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             const response = await authApi.getProfile();
             setUser(response.data.user);
             setDoctorProfile(response.data.doctorProfile || null);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to fetch user:', error);
-            Cookies.remove('token');
-            api.setToken(null);
+            // Only remove token if it's actually invalid (401/403), not on network errors
+            const isAuthError = error?.status === 401 || error?.status === 403;
+            if (isAuthError) {
+                Cookies.remove('token');
+                api.setToken(null);
+                setUser(null);
+                setDoctorProfile(null);
+            }
+            // For network errors, keep the token and user will retry on next navigation
         } finally {
             setIsLoading(false);
         }
     }, []);
 
     useEffect(() => {
+        // Prevent double initialization in React Strict Mode
+        if (hasInitialized.current) return;
+        hasInitialized.current = true;
+        
         refreshUser();
     }, [refreshUser]);
 

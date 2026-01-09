@@ -34,16 +34,20 @@ export const callOpenRouter = async (messages, options = {}) => {
 
 // Extract appointment intent from voice transcript
 export const extractIntent = async (transcript) => {
+    const today = new Date().toISOString().split('T')[0];
     const systemPrompt = `You are an AI assistant for a doctor appointment booking system.
 Extract the following information from the user's voice input:
 - intent: one of "book", "reschedule", "cancel", "check_availability", "list_appointments", "check_symptoms", or "unknown"
 - doctorName: the name of the doctor mentioned (if any)
-- date: the date mentioned in YYYY-MM-DD format (if any). Today is ${new Date().toISOString().split('T')[0]}
-- time: the time mentioned in HH:MM format (24-hour) (if any)
+- date: the date mentioned in YYYY-MM-DD format (if any). Today is ${today}. If no specific date is mentioned but time is mentioned, set date to null and the system will handle finding the next available date.
+- time: the time mentioned in HH:MM format (24-hour) (if any). Be flexible with time formats (2pm, 14:00, 2 PM, etc.)
 - reason: the reason for the appointment or symptoms described (if any)
 
+IMPORTANT: If user mentions a time (like "2pm", "3:00", "at 4", etc.) but no specific date, still extract the time and set intent to "book" if they want to book an appointment.
+
 Respond ONLY with a valid JSON object, no other text.
-Example: {"intent": "book", "doctorName": "Smith", "date": "2024-01-15", "time": "14:00", "reason": "checkup"}`;
+Example: {"intent": "book", "doctorName": "Smith", "date": "2024-01-15", "time": "14:00", "reason": "checkup"}
+Example: {"intent": "book", "doctorName": null, "date": null, "time": "15:00", "reason": "headache"}`;
 
     try {
         const response = await callOpenRouter([
@@ -112,33 +116,57 @@ export const processVoiceCommand = async (transcript, userId, onToken = null) =>
                 break;
             }
 
-            // Check if we have date and time
-            if (!intent.date || !intent.time) {
-                response.message = 'Please specify the date and time for your appointment.';
+            // Handle booking logic
+            let appointmentDate, startTime, endTime;
+
+            if (intent.date && intent.time) {
+                // Both date and time provided - use them directly
+                appointmentDate = intent.date;
+                startTime = intent.time + ':00';
+                endTime = addMinutes(startTime, 30);
+
+                // Check availability
+                const isAvailable = await appointmentService.checkAvailability(
+                    doctor.id,
+                    appointmentDate,
+                    startTime,
+                    endTime
+                );
+
+                if (!isAvailable) {
+                    // Get available slots
+                    const slots = await appointmentService.getAvailableSlots(doctor.id, appointmentDate);
+                    response.message = `That time slot is not available. ${slots.length > 0
+                        ? `Available times: ${slots.slice(0, 3).map(s => s.startTime.slice(0, 5)).join(', ')}`
+                        : 'No slots available on that date.'
+                        }`;
+                    response.data = { slots };
+                    if (onToken) onToken(response.message);
+                    break;
+                }
+            } else if (intent.time) {
+                // Only time provided - find next available slot
+                const nextSlot = await findNextAvailableSlot(doctor.id, intent.time + ':00');
+
+                if (!nextSlot) {
+                    response.message = `I couldn't find any available slots near ${intent.time} for Dr. ${doctor.user.lastName} in the next week. Please try a different time or contact the doctor directly.`;
+                    if (onToken) onToken(response.message);
+                    break;
+                }
+
+                appointmentDate = nextSlot.date;
+                startTime = nextSlot.startTime;
+                endTime = nextSlot.endTime;
+
+                // Inform user about the slot we found
+                const timeDiff = nextSlot.minutesDiff || 0;
+                const timeMessage = timeDiff === 0
+                    ? `at your preferred time ${intent.time}`
+                    : `at ${nextSlot.startTime.slice(0, 5)} (closest to your preferred time ${intent.time})`;
+            } else {
+                // No time provided - ask for it
+                response.message = 'Please specify the time for your appointment.';
                 response.data = { doctor };
-                if (onToken) onToken(response.message);
-                break;
-            }
-
-            // Calculate end time (30 min appointment)
-            const endTime = addMinutes(intent.time + ':00', 30);
-
-            // Check availability
-            const isAvailable = await appointmentService.checkAvailability(
-                doctor.id,
-                intent.date,
-                intent.time + ':00',
-                endTime
-            );
-
-            if (!isAvailable) {
-                // Get available slots
-                const slots = await appointmentService.getAvailableSlots(doctor.id, intent.date);
-                response.message = `That time slot is not available. ${slots.length > 0
-                    ? `Available times: ${slots.slice(0, 3).map(s => s.startTime.slice(0, 5)).join(', ')}`
-                    : 'No slots available on that date.'
-                    }`;
-                response.data = { slots };
                 if (onToken) onToken(response.message);
                 break;
             }
@@ -147,15 +175,16 @@ export const processVoiceCommand = async (transcript, userId, onToken = null) =>
             const appointment = await appointmentService.bookAppointment({
                 clientId: userId,
                 doctorId: doctor.id,
-                appointmentDate: intent.date,
-                startTime: intent.time + ':00',
+                appointmentDate,
+                startTime,
                 endTime,
                 reason: intent.reason,
                 bookedVia: 'voice',
             });
 
             response.success = true;
-            response.message = `Great! Your appointment with Dr. ${doctor.user.lastName} is confirmed for ${intent.date} at ${intent.time}.`;
+            const formattedTime = startTime.slice(0, 5);
+            response.message = `Great! Your appointment with Dr. ${doctor.user.lastName} is confirmed for ${appointmentDate} at ${formattedTime}.`;
             response.data = { appointment };
             if (onToken) onToken(response.message);
             break;
@@ -252,7 +281,61 @@ export const generateVoiceResponse = async (context, data) => {
     }
 };
 
-// Helper function
+// Find next available date and time slot for a doctor
+export const findNextAvailableSlot = async (doctorId, preferredTime, maxDaysAhead = 7) => {
+    const today = new Date();
+
+    for (let daysAhead = 0; daysAhead < maxDaysAhead; daysAhead++) {
+        const checkDate = new Date(today);
+        checkDate.setDate(today.getDate() + daysAhead);
+        const dateString = checkDate.toISOString().split('T')[0];
+
+        // Skip weekends if doctor doesn't work weekends (we'll check availability)
+        const availableSlots = await appointmentService.getAvailableSlots(doctorId, dateString);
+
+        if (availableSlots.length === 0) continue;
+
+        // Find the closest available slot to the preferred time
+        const preferredTimeMinutes = timeToMinutes(preferredTime);
+
+        // Sort slots by proximity to preferred time
+        const sortedSlots = availableSlots
+            .map(slot => ({
+                ...slot,
+                minutesDiff: Math.abs(timeToMinutes(slot.startTime) - preferredTimeMinutes)
+            }))
+            .sort((a, b) => a.minutesDiff - b.minutesDiff);
+
+        // Return the closest slot (within 2 hours)
+        const bestSlot = sortedSlots.find(slot => slot.minutesDiff <= 120); // 2 hours = 120 minutes
+        if (bestSlot) {
+            return {
+                date: dateString,
+                startTime: bestSlot.startTime,
+                endTime: bestSlot.endTime,
+                originalPreferredTime: preferredTime
+            };
+        }
+
+        // If no slot within 2 hours, take the earliest available slot
+        return {
+            date: dateString,
+            startTime: sortedSlots[0].startTime,
+            endTime: sortedSlots[0].endTime,
+            originalPreferredTime: preferredTime
+        };
+    }
+
+    return null; // No available slots found
+};
+
+// Helper function to convert time string to minutes
+function timeToMinutes(timeString) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return hours * 60 + minutes;
+}
+
+// Helper function to add minutes to time string
 function addMinutes(time, minutes) {
     const [hours, mins] = time.split(':').map(Number);
     const totalMinutes = hours * 60 + mins + minutes;
@@ -317,6 +400,7 @@ export const streamVoiceResponse = async (context, data, onToken) => {
 export default {
     extractIntent,
     findDoctor,
+    findNextAvailableSlot,
     processVoiceCommand,
     generateVoiceResponse,
     streamVoiceResponse,

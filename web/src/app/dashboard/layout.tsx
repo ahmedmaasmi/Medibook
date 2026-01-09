@@ -18,6 +18,7 @@ export default function DashboardLayout({
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
     useEffect(() => {
+        // Only redirect if we're certain user is not authenticated (loading complete + no user)
         if (!isLoading && !isAuthenticated) {
             router.push('/login');
         }

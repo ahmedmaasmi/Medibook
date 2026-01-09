@@ -110,16 +110,28 @@ After running the database seeding script, you can use these test accounts to ex
 
 **Note:** Run `npm run seed` in the backend directory to populate the database with these users.
 
-## 📚 API Documentation
+## 📚 Documentation
 
-### Authentication
+### Comprehensive Guides
+
+📖 **[Backend Documentation](BACKEND_DOCUMENTATION.md)** - Complete backend architecture, API reference, and implementation details
+
+📊 **[Graph Architecture](GRAPH_ARCHITECTURE.md)** - Visual diagrams of the graph-based data model and data flows
+
+🚀 **[Quick Reference Guide](BACKEND_QUICK_REFERENCE.md)** - Quick commands, API endpoints, and troubleshooting
+
+🔧 **[Graph Implementation Guide](GRAPH_IMPLEMENTATION_GUIDE.md)** - Detailed explanation of graph model with examples
+
+### Quick API Reference
+
+#### Authentication
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/auth/register` | Register new user |
 | POST | `/api/auth/login` | Login |
 | GET | `/api/auth/me` | Get current user |
 
-### Appointments
+#### Appointments
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/appointments` | List appointments |
@@ -127,25 +139,20 @@ After running the database seeding script, you can use these test accounts to ex
 | GET | `/api/appointments/slots/:doctorId` | Get available slots |
 | PATCH | `/api/appointments/:id/cancel` | Cancel appointment |
 
-### Doctors
+#### AI & RAG
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/doctors` | List all doctors |
-| GET | `/api/doctors/:id` | Get doctor details |
-| POST | `/api/doctors/availability` | Set availability |
+| POST | `/api/ai/recommend-doctor` | AI-powered doctor recommendation |
+| POST | `/api/ai/confirm-booking` | Confirm AI recommendation |
+| POST | `/api/chat/message` | Chat with AI assistant |
 
-### Voice Processing
+#### Voice Processing
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/voice/process` | Process voice command |
 | POST | `/api/voice/extract-intent` | Extract intent only |
 
-### Google Calendar
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/calendar/auth-url` | Get OAuth URL |
-| GET | `/api/calendar/status` | Check connection |
-| POST | `/api/calendar/disconnect` | Disconnect calendar |
+For complete API documentation, see [BACKEND_DOCUMENTATION.md](BACKEND_DOCUMENTATION.md)
 
 ## 🔧 Tech Stack
 
@@ -153,9 +160,41 @@ After running the database seeding script, you can use these test accounts to ex
 |-----------|------------|---------|
 | Backend | Node.js + Express | 18+ / 4.18.x |
 | Database | PostgreSQL + Sequelize | 14+ / 6.35.x |
+| Vector DB | pgvector | Latest |
 | Web | Next.js + Tailwind CSS | 14.2.35 / 3.4.x |
 | AI | OpenRouter SDK | 0.2.11 |
 | Voice | Web Speech API | Native |
+
+## 🧠 Graph-Based Architecture
+
+The backend implements a **graph-based data model** where entities (Users, Doctors, Appointments, Availability) are connected through relationships. This provides:
+
+- **Natural Relationships** - Models real-world connections between entities
+- **Efficient Traversal** - Fast queries through optimized joins and indexes
+- **Vector Embeddings** - Semantic search using PostgreSQL pgvector (1536-dimensional vectors)
+- **RAG System** - Retrieval-Augmented Generation for intelligent doctor recommendations
+
+### Graph Structure
+
+```
+User ──(1:1)──► Doctor ──(1:M)──► Appointment
+ │                │                     │
+ │                │                     │
+ │                ▼                     │
+ │           Availability               │
+ │                                      │
+ └──────────(1:M as client)────────────┘
+
+Doctor ──(1:1)──► DoctorEmbedding (vector space)
+```
+
+**Key Features:**
+- **Semantic Doctor Search** - Find doctors by symptom description using AI embeddings
+- **Symptom Analysis** - AI analyzes patient symptoms to suggest specialties
+- **Availability Management** - Dynamic slot generation based on doctor schedules
+- **Conflict Detection** - Prevents double-booking through graph traversal
+
+For detailed information, see [Graph Implementation Guide](GRAPH_IMPLEMENTATION_GUIDE.md)
 
 ## 🌐 Google Calendar Setup
 

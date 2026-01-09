@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import '../services/auth_service.dart';
 
-class AppointmentsScreen extends StatelessWidget {
+class AppointmentsScreen extends StatefulWidget {
   const AppointmentsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final ApiService apiService = ApiService();
+  State<AppointmentsScreen> createState() => _AppointmentsScreenState();
+}
 
+class _AppointmentsScreenState extends State<AppointmentsScreen> {
+  late Future<List<dynamic>> _appointmentsFuture;
+  final ApiService _apiService = ApiService();
+  final AuthService _authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAppointments();
+  }
+
+  void _loadAppointments() {
+    _appointmentsFuture = _apiService.getAppointments();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0A0A0A),
       appBar: AppBar(
@@ -20,17 +38,52 @@ class AppointmentsScreen extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<List<dynamic>>(
-        future: apiService.getAppointments(),
+        future: _appointmentsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
+            final error = snapshot.error;
+            if (error is ApiException && error.statusCode == 401) {
+              // Handle authentication error
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                await _authService.logout();
+                if (mounted) {
+                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Session expired. Please log in again.')),
+                  );
+                }
+              });
+              return const Center(
+                child: Text(
+                  'Session expired. Redirecting to login...',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              );
+            }
+
             return Center(
-              child: Text(
-                'Error: ${snapshot.error}',
-                style: const TextStyle(color: Colors.white54),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Error: ${error is ApiException ? error.message : error}',
+                    style: const TextStyle(color: Colors.white54),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _loadAppointments();
+                      });
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
               ),
             );
           }
@@ -53,7 +106,7 @@ class AppointmentsScreen extends StatelessWidget {
               final appointment = appointments[index];
               final doctor = appointment['doctor'] ?? {};
               final doctorUser = doctor['user'] ?? {};
-              
+
               return Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -77,16 +130,16 @@ class AppointmentsScreen extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: (appointment['status'] == 'confirmed') 
-                                ? Colors.green.withOpacity(0.2) 
+                            color: (appointment['status'] == 'confirmed')
+                                ? Colors.green.withOpacity(0.2)
                                 : Colors.orange.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             appointment['status'] ?? 'Pending',
                             style: TextStyle(
-                              color: (appointment['status'] == 'confirmed') 
-                                  ? Colors.green 
+                              color: (appointment['status'] == 'confirmed')
+                                  ? Colors.green
                                   : Colors.orange,
                               fontSize: 12,
                             ),

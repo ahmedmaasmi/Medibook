@@ -103,12 +103,24 @@ class _VoiceAgentScreenState extends State<VoiceAgentScreen> {
         _agentResponse = response['response'] ?? response['message'] ?? 'I found something for you.';
       });
     } catch (e) {
+      if (e is ApiException && e.statusCode == 401) {
+        // Token expired or invalid, logout user
+        await _authService.logout();
+        if (mounted) {
+          Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Session expired. Please log in again.')),
+          );
+        }
+        return;
+      }
+
       setState(() {
         _agentResponse = 'Sorry, I had trouble connecting. Please try again.';
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text('Error: ${e is ApiException ? e.message : e}')),
         );
       }
     } finally {

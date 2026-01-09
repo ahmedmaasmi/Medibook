@@ -15,11 +15,19 @@ export default function AdminLayout({
     const pathname = usePathname();
 
     useEffect(() => {
+        // Only redirect after loading is complete
         if (!isLoading) {
             if (!isAuthenticated) {
                 router.push('/login');
             } else if (user?.role !== 'admin') {
-                router.push('/dashboard'); // Redirect non-admins
+                // Redirect non-admins to their appropriate dashboard
+                if (user?.role === 'doctor') {
+                    router.push('/dashboard/doctor');
+                } else if (user?.role === 'client') {
+                    router.push('/dashboard/client');
+                } else {
+                    router.push('/login');
+                }
             }
         }
     }, [isLoading, isAuthenticated, user, router]);

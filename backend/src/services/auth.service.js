@@ -91,4 +91,30 @@ export const getProfile = async (userId) => {
     };
 };
 
-export default { register, login, getProfile };
+export const refreshToken = async (userId) => {
+    const user = await User.findByPk(userId);
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
+
+    // Check if user is active
+    if (!user.isActive) {
+        throw new AppError('Account is deactivated', 401);
+    }
+
+    const token = generateToken(user.id);
+
+    // Get doctor profile if applicable
+    let doctorProfile = null;
+    if (user.role === 'doctor') {
+        doctorProfile = await Doctor.findOne({ where: { userId: user.id } });
+    }
+
+    return {
+        user: user.toJSON(),
+        doctorProfile,
+        token,
+    };
+};
+
+export default { register, login, getProfile, refreshToken };

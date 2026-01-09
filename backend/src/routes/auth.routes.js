@@ -86,4 +86,18 @@ router.get('/verify', authenticate, (req, res) => {
     });
 });
 
+// Refresh token
+router.post('/refresh', authenticate, async (req, res, next) => {
+    try {
+        const result = await authService.refreshToken(req.user.id);
+        res.json({
+            success: true,
+            message: 'Token refreshed successfully',
+            data: result,
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;

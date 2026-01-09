@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import '../services/auth_service.dart';
 
-class DoctorsScreen extends StatelessWidget {
+class DoctorsScreen extends StatefulWidget {
   const DoctorsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final ApiService apiService = ApiService();
+  State<DoctorsScreen> createState() => _DoctorsScreenState();
+}
 
+class _DoctorsScreenState extends State<DoctorsScreen> {
+  late Future<List<dynamic>> _doctorsFuture;
+  final ApiService _apiService = ApiService();
+  final AuthService _authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDoctors();
+  }
+
+  void _loadDoctors() {
+    _doctorsFuture = _apiService.getDoctors();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0A0A0A),
       appBar: AppBar(
@@ -20,17 +38,52 @@ class DoctorsScreen extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<List<dynamic>>(
-        future: apiService.getDoctors(),
+        future: _doctorsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
+            final error = snapshot.error;
+            if (error is ApiException && error.statusCode == 401) {
+              // Handle authentication error
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                await _authService.logout();
+                if (mounted) {
+                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Session expired. Please log in again.')),
+                  );
+                }
+              });
+              return const Center(
+                child: Text(
+                  'Session expired. Redirecting to login...',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              );
+            }
+
             return Center(
-              child: Text(
-                'Error: ${snapshot.error}',
-                style: const TextStyle(color: Colors.white54),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Error: ${error is ApiException ? error.message : error}',
+                    style: const TextStyle(color: Colors.white54),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _loadDoctors();
+                      });
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
               ),
             );
           }
