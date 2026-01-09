@@ -13,7 +13,12 @@ const User = sequelize.define('User', {
         allowNull: false,
         unique: true,
         validate: {
-            isEmail: true,
+            isEmail(value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    throw new Error('Please enter a valid email address');
+                }
+            },
         },
     },
     password: {
@@ -33,7 +38,7 @@ const User = sequelize.define('User', {
         allowNull: true,
     },
     role: {
-        type: DataTypes.ENUM('client', 'doctor'),
+        type: DataTypes.ENUM('client', 'doctor', 'admin'),
         allowNull: false,
         defaultValue: 'client',
     },

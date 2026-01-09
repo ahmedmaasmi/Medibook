@@ -9,7 +9,7 @@ interface AuthContextType {
     doctorProfile: DoctorProfile | null;
     isLoading: boolean;
     isAuthenticated: boolean;
-    login: (email: string, password: string) => Promise<void>;
+    login: (email: string, password: string) => Promise<User>;
     logout: () => void;
     refreshUser: () => Promise<void>;
 }
@@ -56,6 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.data.user.role === 'doctor') {
             await refreshUser();
         }
+        return response.data.user;
     };
 
     const logout = () => {

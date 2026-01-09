@@ -1,13 +1,116 @@
 Seeded User Emails and Credentials:
 -----------------------------------
 
-Doctors:
-- dr.smith@example.com (Password: Password123!) - Cardiology
-- dr.jones@example.com (Password: Password123!) - Dermatology
-- dr.wilson@example.com (Password: Password123!) - Pediatrics
-- dr.garcia@example.com (Password: Password123!) - Neurology
+Doctors (100 Algerian Doctors):
+All doctors use password: Doctor123!
+
+1. adel.benali1@medmail.dz - Cardiology
+2. samira.cherif2@medmail.dz - Dermatology
+3. nassim.maazouz3@medmail.dz - Pediatrics
+4. fatiha.bouguerra4@medmail.dz - Neurology
+5. rachid.hadjeri5@medmail.dz - Orthopedics
+6. yasmina.khelifi6@medmail.dz - Gynecology
+7. mohamed.zkiri7@medmail.dz - Ophthalmology
+8. ilham.amer8@medmail.dz - Psychiatry
+9. farid.benmoussa9@medmail.dz - Dentistry
+10. amina.belhadj10@medmail.dz - Internal Medicine
+11. karim.mansouri11@medmail.dz - Cardiology
+12. salima.ouali12@medmail.dz - Dermatology
+13. hakim.boudjemaa13@medmail.dz - Pediatrics
+14. linda.meziani14@medmail.dz - Neurology
+15. youcef.saidi15@medmail.dz - Orthopedics
+16. nadia.benhaddou16@medmail.dz - Gynecology
+17. walid.ferhat17@medmail.dz - Ophthalmology
+18. sabrina.aitali18@medmail.dz - Psychiatry
+19. omar.toumi19@medmail.dz - Dentistry
+20. houda.kouider20@medmail.dz - Internal Medicine
+21. brahim.benamar21@medmail.dz - Cardiology
+22. rania.ghali22@medmail.dz - Dermatology
+23. khaled.merabet23@medmail.dz - Pediatrics
+24. imane.dahmani24@medmail.dz - Neurology
+25. sofiane.yahia25@medmail.dz - Orthopedics
+26. amal.bensaid26@medmail.dz - Gynecology
+27. redouane.hammadi27@medmail.dz - Ophthalmology
+28. nesrine.boukhalfa28@medmail.dz - Psychiatry
+29. ayoub.meftah29@medmail.dz - Dentistry
+30. dounia.belabbes30@medmail.dz - Internal Medicine
+31. taha.benali31@medmail.dz - Cardiology
+32. leila.cherif32@medmail.dz - Dermatology
+33. kamel.maazouz33@medmail.dz - Pediatrics
+34. meriem.bouguerra34@medmail.dz - Neurology
+35. sami.hadjeri35@medmail.dz - Orthopedics
+36. souad.khelifi36@medmail.dz - Gynecology
+37. youssef.zkiri37@medmail.dz - Ophthalmology
+38. fatima.amer38@medmail.dz - Psychiatry
+39. mohammed.benmoussa39@medmail.dz - Dentistry
+40. zahra.belhadj40@medmail.dz - Internal Medicine
+41. amine.mansouri41@medmail.dz - Cardiology
+42. hafsa.ouali42@medmail.dz - Dermatology
+43. bilal.boudjemaa43@medmail.dz - Pediatrics
+44. nour.meziani44@medmail.dz - Neurology
+45. hamza.saidi45@medmail.dz - Orthopedics
+46. sara.benhaddou46@medmail.dz - Gynecology
+47. anas.ferhat47@medmail.dz - Ophthalmology
+48. marwa.aitali48@medmail.dz - Psychiatry
+49. adam.toumi49@medmail.dz - Dentistry
+50. maya.kouider50@medmail.dz - Internal Medicine
+51. yacine.benamar51@medmail.dz - Cardiology
+52. ines.ghali52@medmail.dz - Dermatology
+53. zaki.merabet53@medmail.dz - Pediatrics
+54. laila.dahmani54@medmail.dz - Neurology
+55. said.yahia55@medmail.dz - Orthopedics
+56. rim.bensaid56@medmail.dz - Gynecology
+57. ilyes.hammadi57@medmail.dz - Ophthalmology
+58. nourhan.boukhalfa58@medmail.dz - Psychiatry
+59. rayan.meftah59@medmail.dz - Dentistry
+60. jihan.belabbes60@medmail.dz - Internal Medicine
+61. fares.benali61@medmail.dz - Cardiology
+62. malak.cherif62@medmail.dz - Dermatology
+63. lounis.maazouz63@medmail.dz - Pediatrics
+64. samia.bouguerra64@medmail.dz - Neurology
+65. naim.hadjeri65@medmail.dz - Orthopedics
+66. hiba.khelifi66@medmail.dz - Gynecology
+67. ibrahim.zkiri67@medmail.dz - Ophthalmology
+68. ranya.amer68@medmail.dz - Psychiatry
+69. marouane.benmoussa69@medmail.dz - Dentistry
+70. lyna.belhadj70@medmail.dz - Internal Medicine
+71. ismael.mansouri71@medmail.dz - Cardiology
+72. khadija.ouali72@medmail.dz - Dermatology
+73. rayen.boudjemaa73@medmail.dz - Pediatrics
+74. yasmine.meziani74@medmail.dz - Neurology
+75. mehdi.saidi75@medmail.dz - Orthopedics
+76. amani.benhaddou76@medmail.dz - Gynecology
+77. zakaria.ferhat77@medmail.dz - Ophthalmology
+78. assia.aitali78@medmail.dz - Psychiatry
+79. hassan.toumi79@medmail.dz - Dentistry
+80. nada.kouider80@medmail.dz - Internal Medicine
+81. oussama.benamar81@medmail.dz - Cardiology
+82. chaima.ghali82@medmail.dz - Dermatology
+83. maher.merabet83@medmail.dz - Pediatrics
+84. carmen.dahmani84@medmail.dz - Neurology
+85. noureddine.yahia85@medmail.dz - Orthopedics
+86. tasnim.bensaid86@medmail.dz - Gynecology
+87. jalil.hammadi87@medmail.dz - Ophthalmology
+88. hanaa.boukhalfa88@medmail.dz - Psychiatry
+89. zayd.meftah89@medmail.dz - Dentistry
+90. mariam.belabbes90@medmail.dz - Internal Medicine
+91. bachir.benali91@medmail.dz - Cardiology
+92. wafa.cherif92@medmail.dz - Dermatology
+93. mounir.maazouz93@medmail.dz - Pediatrics
+94. badria.bouguerra94@medmail.dz - Neurology
+95. younes.hadjeri95@medmail.dz - Orthopedics
+96. rahma.khelifi96@medmail.dz - Gynecology
+97. yasser.zkiri97@medmail.dz - Ophthalmology
+98. siham.amer98@medmail.dz - Psychiatry
+99. abdelkader.benmoussa99@medmail.dz - Dentistry
+100. douaa.belhadj100@medmail.dz - Internal Medicine
 
 Clients:
 - client1@example.com (Password: Password123!)
 - client2@example.com (Password: Password123!)
 - ahmed@test.com (Password: Password123!)
+
+Admin:
+admin@example.com Password123!
+superadmin@medmail.dz Admin123!
+manager@medmail.dz Manager123!

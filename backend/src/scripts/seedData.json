@@ -1,35 +1,803 @@
 {
     "users": [
         {
-            "email": "dr.smith@example.com",
-            "password": "Password123!",
-            "firstName": "John",
-            "lastName": "Smith",
-            "phone": "+1234567890",
+            "email": "adel.benali1@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Adel",
+            "lastName": "Benali",
+            "phone": "+213550100001",
             "role": "doctor"
         },
         {
-            "email": "dr.jones@example.com",
-            "password": "Password123!",
-            "firstName": "Sarah",
-            "lastName": "Jones",
-            "phone": "+1987654321",
+            "email": "samira.cherif2@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Samira",
+            "lastName": "Cherif",
+            "phone": "+213550100002",
             "role": "doctor"
         },
         {
-            "email": "dr.wilson@example.com",
-            "password": "Password123!",
-            "firstName": "Michael",
-            "lastName": "Wilson",
-            "phone": "+1122334455",
+            "email": "nassim.maazouz3@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nassim",
+            "lastName": "Maazouz",
+            "phone": "+213550100003",
             "role": "doctor"
         },
         {
-            "email": "dr.garcia@example.com",
-            "password": "Password123!",
-            "firstName": "Elena",
-            "lastName": "Garcia",
-            "phone": "+1556677889",
+            "email": "fatiha.bouguerra4@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Fatiha",
+            "lastName": "Bouguerra",
+            "phone": "+213550100004",
+            "role": "doctor"
+        },
+        {
+            "email": "rachid.hadjeri5@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rachid",
+            "lastName": "Hadjeri",
+            "phone": "+213550100005",
+            "role": "doctor"
+        },
+        {
+            "email": "yasmina.khelifi6@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Yasmina",
+            "lastName": "Khelifi",
+            "phone": "+213550100006",
+            "role": "doctor"
+        },
+        {
+            "email": "mohamed.zkiri7@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Mohamed",
+            "lastName": "Zkiri",
+            "phone": "+213550100007",
+            "role": "doctor"
+        },
+        {
+            "email": "ilham.amer8@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ilham",
+            "lastName": "Amer",
+            "phone": "+213550100008",
+            "role": "doctor"
+        },
+        {
+            "email": "farid.benmoussa9@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Farid",
+            "lastName": "Benmoussa",
+            "phone": "+213550100009",
+            "role": "doctor"
+        },
+        {
+            "email": "amina.belhadj10@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Amina",
+            "lastName": "Belhadj",
+            "phone": "+213550100010",
+            "role": "doctor"
+        },
+        {
+            "email": "karim.mansouri11@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Karim",
+            "lastName": "Mansouri",
+            "phone": "+213550100011",
+            "role": "doctor"
+        },
+        {
+            "email": "salima.ouali12@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Salima",
+            "lastName": "Ouali",
+            "phone": "+213550100012",
+            "role": "doctor"
+        },
+        {
+            "email": "hakim.boudjemaa13@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hakim",
+            "lastName": "Boudjemaa",
+            "phone": "+213550100013",
+            "role": "doctor"
+        },
+        {
+            "email": "linda.meziani14@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Linda",
+            "lastName": "Meziani",
+            "phone": "+213550100014",
+            "role": "doctor"
+        },
+        {
+            "email": "youcef.saidi15@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Youcef",
+            "lastName": "Saidi",
+            "phone": "+213550100015",
+            "role": "doctor"
+        },
+        {
+            "email": "nadia.benhaddou16@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nadia",
+            "lastName": "Benhaddou",
+            "phone": "+213550100016",
+            "role": "doctor"
+        },
+        {
+            "email": "walid.ferhat17@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Walid",
+            "lastName": "Ferhat",
+            "phone": "+213550100017",
+            "role": "doctor"
+        },
+        {
+            "email": "sabrina.aitali18@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Sabrina",
+            "lastName": "AitAli",
+            "phone": "+213550100018",
+            "role": "doctor"
+        },
+        {
+            "email": "omar.toumi19@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Omar",
+            "lastName": "Toumi",
+            "phone": "+213550100019",
+            "role": "doctor"
+        },
+        {
+            "email": "houda.kouider20@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Houda",
+            "lastName": "Kouider",
+            "phone": "+213550100020",
+            "role": "doctor"
+        },
+        {
+            "email": "brahim.benamar21@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Brahim",
+            "lastName": "Benamar",
+            "phone": "+213550100021",
+            "role": "doctor"
+        },
+        {
+            "email": "rania.ghali22@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rania",
+            "lastName": "Ghali",
+            "phone": "+213550100022",
+            "role": "doctor"
+        },
+        {
+            "email": "khaled.merabet23@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Khaled",
+            "lastName": "Merabet",
+            "phone": "+213550100023",
+            "role": "doctor"
+        },
+        {
+            "email": "imane.dahmani24@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Imane",
+            "lastName": "Dahmani",
+            "phone": "+213550100024",
+            "role": "doctor"
+        },
+        {
+            "email": "sofiane.yahia25@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Sofiane",
+            "lastName": "Yahia",
+            "phone": "+213550100025",
+            "role": "doctor"
+        },
+        {
+            "email": "amal.bensaid26@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Amal",
+            "lastName": "Bensaid",
+            "phone": "+213550100026",
+            "role": "doctor"
+        },
+        {
+            "email": "redouane.hammadi27@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Redouane",
+            "lastName": "Hammadi",
+            "phone": "+213550100027",
+            "role": "doctor"
+        },
+        {
+            "email": "nesrine.boukhalfa28@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nesrine",
+            "lastName": "Boukhalfa",
+            "phone": "+213550100028",
+            "role": "doctor"
+        },
+        {
+            "email": "ayoub.meftah29@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ayoub",
+            "lastName": "Meftah",
+            "phone": "+213550100029",
+            "role": "doctor"
+        },
+        {
+            "email": "dounia.belabbes30@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Dounia",
+            "lastName": "Belabbes",
+            "phone": "+213550100030",
+            "role": "doctor"
+        },
+        {
+            "email": "taha.benali31@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Taha",
+            "lastName": "Benali",
+            "phone": "+213550100031",
+            "role": "doctor"
+        },
+        {
+            "email": "leila.cherif32@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Leila",
+            "lastName": "Cherif",
+            "phone": "+213550100032",
+            "role": "doctor"
+        },
+        {
+            "email": "kamel.maazouz33@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Kamel",
+            "lastName": "Maazouz",
+            "phone": "+213550100033",
+            "role": "doctor"
+        },
+        {
+            "email": "meriem.bouguerra34@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Meriem",
+            "lastName": "Bouguerra",
+            "phone": "+213550100034",
+            "role": "doctor"
+        },
+        {
+            "email": "sami.hadjeri35@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Sami",
+            "lastName": "Hadjeri",
+            "phone": "+213550100035",
+            "role": "doctor"
+        },
+        {
+            "email": "souad.khelifi36@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Souad",
+            "lastName": "Khelifi",
+            "phone": "+213550100036",
+            "role": "doctor"
+        },
+        {
+            "email": "youssef.zkiri37@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Youssef",
+            "lastName": "Zkiri",
+            "phone": "+213550100037",
+            "role": "doctor"
+        },
+        {
+            "email": "fatima.amer38@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Fatima",
+            "lastName": "Amer",
+            "phone": "+213550100038",
+            "role": "doctor"
+        },
+        {
+            "email": "mohammed.benmoussa39@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Mohammed",
+            "lastName": "Benmoussa",
+            "phone": "+213550100039",
+            "role": "doctor"
+        },
+        {
+            "email": "zahra.belhadj40@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Zahra",
+            "lastName": "Belhadj",
+            "phone": "+213550100040",
+            "role": "doctor"
+        },
+        {
+            "email": "amine.mansouri41@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Amine",
+            "lastName": "Mansouri",
+            "phone": "+213550100041",
+            "role": "doctor"
+        },
+        {
+            "email": "hafsa.ouali42@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hafsa",
+            "lastName": "Ouali",
+            "phone": "+213550100042",
+            "role": "doctor"
+        },
+        {
+            "email": "bilal.boudjemaa43@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Bilal",
+            "lastName": "Boudjemaa",
+            "phone": "+213550100043",
+            "role": "doctor"
+        },
+        {
+            "email": "nour.meziani44@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nour",
+            "lastName": "Meziani",
+            "phone": "+213550100044",
+            "role": "doctor"
+        },
+        {
+            "email": "hamza.saidi45@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hamza",
+            "lastName": "Saidi",
+            "phone": "+213550100045",
+            "role": "doctor"
+        },
+        {
+            "email": "sara.benhaddou46@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Sara",
+            "lastName": "Benhaddou",
+            "phone": "+213550100046",
+            "role": "doctor"
+        },
+        {
+            "email": "anas.ferhat47@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Anas",
+            "lastName": "Ferhat",
+            "phone": "+213550100047",
+            "role": "doctor"
+        },
+        {
+            "email": "marwa.aitali48@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Marwa",
+            "lastName": "AitAli",
+            "phone": "+213550100048",
+            "role": "doctor"
+        },
+        {
+            "email": "adam.toumi49@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Adam",
+            "lastName": "Toumi",
+            "phone": "+213550100049",
+            "role": "doctor"
+        },
+        {
+            "email": "maya.kouider50@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Maya",
+            "lastName": "Kouider",
+            "phone": "+213550100050",
+            "role": "doctor"
+        },
+        {
+            "email": "yacine.benamar51@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Yacine",
+            "lastName": "Benamar",
+            "phone": "+213550100051",
+            "role": "doctor"
+        },
+        {
+            "email": "ines.ghali52@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ines",
+            "lastName": "Ghali",
+            "phone": "+213550100052",
+            "role": "doctor"
+        },
+        {
+            "email": "zaki.merabet53@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Zaki",
+            "lastName": "Merabet",
+            "phone": "+213550100053",
+            "role": "doctor"
+        },
+        {
+            "email": "laila.dahmani54@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Laila",
+            "lastName": "Dahmani",
+            "phone": "+213550100054",
+            "role": "doctor"
+        },
+        {
+            "email": "said.yahia55@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Said",
+            "lastName": "Yahia",
+            "phone": "+213550100055",
+            "role": "doctor"
+        },
+        {
+            "email": "rim.bensaid56@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rim",
+            "lastName": "Bensaid",
+            "phone": "+213550100056",
+            "role": "doctor"
+        },
+        {
+            "email": "ilyes.hammadi57@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ilyes",
+            "lastName": "Hammadi",
+            "phone": "+213550100057",
+            "role": "doctor"
+        },
+        {
+            "email": "nourhan.boukhalfa58@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nourhan",
+            "lastName": "Boukhalfa",
+            "phone": "+213550100058",
+            "role": "doctor"
+        },
+        {
+            "email": "rayan.meftah59@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rayan",
+            "lastName": "Meftah",
+            "phone": "+213550100059",
+            "role": "doctor"
+        },
+        {
+            "email": "jihan.belabbes60@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Jihan",
+            "lastName": "Belabbes",
+            "phone": "+213550100060",
+            "role": "doctor"
+        },
+        {
+            "email": "fares.benali61@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Fares",
+            "lastName": "Benali",
+            "phone": "+213550100061",
+            "role": "doctor"
+        },
+        {
+            "email": "malak.cherif62@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Malak",
+            "lastName": "Cherif",
+            "phone": "+213550100062",
+            "role": "doctor"
+        },
+        {
+            "email": "lounis.maazouz63@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Lounis",
+            "lastName": "Maazouz",
+            "phone": "+213550100063",
+            "role": "doctor"
+        },
+        {
+            "email": "samia.bouguerra64@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Samia",
+            "lastName": "Bouguerra",
+            "phone": "+213550100064",
+            "role": "doctor"
+        },
+        {
+            "email": "naim.hadjeri65@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Naim",
+            "lastName": "Hadjeri",
+            "phone": "+213550100065",
+            "role": "doctor"
+        },
+        {
+            "email": "hiba.khelifi66@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hiba",
+            "lastName": "Khelifi",
+            "phone": "+213550100066",
+            "role": "doctor"
+        },
+        {
+            "email": "ibrahim.zkiri67@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ibrahim",
+            "lastName": "Zkiri",
+            "phone": "+213550100067",
+            "role": "doctor"
+        },
+        {
+            "email": "ranya.amer68@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ranya",
+            "lastName": "Amer",
+            "phone": "+213550100068",
+            "role": "doctor"
+        },
+        {
+            "email": "marouane.benmoussa69@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Marouane",
+            "lastName": "Benmoussa",
+            "phone": "+213550100069",
+            "role": "doctor"
+        },
+        {
+            "email": "lyna.belhadj70@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Lyna",
+            "lastName": "Belhadj",
+            "phone": "+213550100070",
+            "role": "doctor"
+        },
+        {
+            "email": "ismael.mansouri71@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Ismael",
+            "lastName": "Mansouri",
+            "phone": "+213550100071",
+            "role": "doctor"
+        },
+        {
+            "email": "khadija.ouali72@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Khadija",
+            "lastName": "Ouali",
+            "phone": "+213550100072",
+            "role": "doctor"
+        },
+        {
+            "email": "rayen.boudjemaa73@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rayen",
+            "lastName": "Boudjemaa",
+            "phone": "+213550100073",
+            "role": "doctor"
+        },
+        {
+            "email": "yasmine.meziani74@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Yasmine",
+            "lastName": "Meziani",
+            "phone": "+213550100074",
+            "role": "doctor"
+        },
+        {
+            "email": "mehdi.saidi75@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Mehdi",
+            "lastName": "Saidi",
+            "phone": "+213550100075",
+            "role": "doctor"
+        },
+        {
+            "email": "amani.benhaddou76@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Amani",
+            "lastName": "Benhaddou",
+            "phone": "+213550100076",
+            "role": "doctor"
+        },
+        {
+            "email": "zakaria.ferhat77@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Zakaria",
+            "lastName": "Ferhat",
+            "phone": "+213550100077",
+            "role": "doctor"
+        },
+        {
+            "email": "assia.aitali78@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Assia",
+            "lastName": "AitAli",
+            "phone": "+213550100078",
+            "role": "doctor"
+        },
+        {
+            "email": "hassan.toumi79@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hassan",
+            "lastName": "Toumi",
+            "phone": "+213550100079",
+            "role": "doctor"
+        },
+        {
+            "email": "nada.kouider80@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Nada",
+            "lastName": "Kouider",
+            "phone": "+213550100080",
+            "role": "doctor"
+        },
+        {
+            "email": "oussama.benamar81@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Oussama",
+            "lastName": "Benamar",
+            "phone": "+213550100081",
+            "role": "doctor"
+        },
+        {
+            "email": "chaima.ghali82@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Chaima",
+            "lastName": "Ghali",
+            "phone": "+213550100082",
+            "role": "doctor"
+        },
+        {
+            "email": "maher.merabet83@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Maher",
+            "lastName": "Merabet",
+            "phone": "+213550100083",
+            "role": "doctor"
+        },
+        {
+            "email": "carmen.dahmani84@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Carmen",
+            "lastName": "Dahmani",
+            "phone": "+213550100084",
+            "role": "doctor"
+        },
+        {
+            "email": "noureddine.yahia85@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Noureddine",
+            "lastName": "Yahia",
+            "phone": "+213550100085",
+            "role": "doctor"
+        },
+        {
+            "email": "tasnim.bensaid86@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Tasnim",
+            "lastName": "Bensaid",
+            "phone": "+213550100086",
+            "role": "doctor"
+        },
+        {
+            "email": "jalil.hammadi87@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Jalil",
+            "lastName": "Hammadi",
+            "phone": "+213550100087",
+            "role": "doctor"
+        },
+        {
+            "email": "hanaa.boukhalfa88@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Hanaa",
+            "lastName": "Boukhalfa",
+            "phone": "+213550100088",
+            "role": "doctor"
+        },
+        {
+            "email": "zayd.meftah89@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Zayd",
+            "lastName": "Meftah",
+            "phone": "+213550100089",
+            "role": "doctor"
+        },
+        {
+            "email": "mariam.belabbes90@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Mariam",
+            "lastName": "Belabbes",
+            "phone": "+213550100090",
+            "role": "doctor"
+        },
+        {
+            "email": "bachir.benali91@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Bachir",
+            "lastName": "Benali",
+            "phone": "+213550100091",
+            "role": "doctor"
+        },
+        {
+            "email": "wafa.cherif92@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Wafa",
+            "lastName": "Cherif",
+            "phone": "+213550100092",
+            "role": "doctor"
+        },
+        {
+            "email": "mounir.maazouz93@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Mounir",
+            "lastName": "Maazouz",
+            "phone": "+213550100093",
+            "role": "doctor"
+        },
+        {
+            "email": "badria.bouguerra94@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Badria",
+            "lastName": "Bouguerra",
+            "phone": "+213550100094",
+            "role": "doctor"
+        },
+        {
+            "email": "younes.hadjeri95@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Younes",
+            "lastName": "Hadjeri",
+            "phone": "+213550100095",
+            "role": "doctor"
+        },
+        {
+            "email": "rahma.khelifi96@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Rahma",
+            "lastName": "Khelifi",
+            "phone": "+213550100096",
+            "role": "doctor"
+        },
+        {
+            "email": "yasser.zkiri97@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Yasser",
+            "lastName": "Zkiri",
+            "phone": "+213550100097",
+            "role": "doctor"
+        },
+        {
+            "email": "siham.amer98@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Siham",
+            "lastName": "Amer",
+            "phone": "+213550100098",
+            "role": "doctor"
+        },
+        {
+            "email": "abdelkader.benmoussa99@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Abdelkader",
+            "lastName": "Benmoussa",
+            "phone": "+213550100099",
+            "role": "doctor"
+        },
+        {
+            "email": "douaa.belhadj100@medmail.dz",
+            "password": "Doctor123!",
+            "firstName": "Douaa",
+            "lastName": "Belhadj",
+            "phone": "+213550100100",
             "role": "doctor"
         },
         {
@@ -55,91 +823,2234 @@
             "lastName": "Test",
             "phone": "+123000999",
             "role": "client"
+        },
+        {
+            "email": "admin@example.com",
+            "password": "Password123!",
+            "firstName": "System",
+            "lastName": "Administrator",
+            "phone": "+213551000000",
+            "role": "admin"
+        },
+        {
+            "email": "superadmin@medmail.dz",
+            "password": "Admin123!",
+            "firstName": "Super",
+            "lastName": "Admin",
+            "phone": "+213551000001",
+            "role": "admin"
+        },
+        {
+            "email": "manager@medmail.dz",
+            "password": "Manager123!",
+            "firstName": "System",
+            "lastName": "Manager",
+            "phone": "+213551000002",
+            "role": "admin"
         }
     ],
     "doctors": [
         {
-            "userEmail": "dr.smith@example.com",
+            "userEmail": "adel.benali1@medmail.dz",
             "specialization": "Cardiology",
-            "licenseNumber": "LIC12345",
-            "bio": "Experienced cardiologist with 15 years in the field.",
+            "licenseNumber": "DZ-CARD-001",
+            "bio": "Experienced cardiologist specializing in heart diseases and cardiovascular health.",
             "consultationFee": 150.00,
             "yearsOfExperience": 15
         },
         {
-            "userEmail": "dr.jones@example.com",
+            "userEmail": "samira.cherif2@medmail.dz",
             "specialization": "Dermatology",
-            "licenseNumber": "LIC67890",
-            "bio": "Expert in skin care and dermatological procedures.",
+            "licenseNumber": "DZ-DERM-002",
+            "bio": "Expert dermatologist with focus on skin conditions and cosmetic procedures.",
+            "consultationFee": 120.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "nassim.maazouz3@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-003",
+            "bio": "Dedicated pediatrician specializing in child health and development.",
+            "consultationFee": 100.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "fatiha.bouguerra4@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-004",
+            "bio": "Neurologist specializing in brain and nervous system disorders.",
+            "consultationFee": 200.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "rachid.hadjeri5@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-005",
+            "bio": "Orthopedic surgeon with expertise in bone and joint treatments.",
+            "consultationFee": 180.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "yasmina.khelifi6@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-006",
+            "bio": "Gynecologist specializing in women's health and reproductive medicine.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "mohamed.zkiri7@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-007",
+            "bio": "Ophthalmologist focused on eye health and vision correction.",
+            "consultationFee": 140.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "ilham.amer8@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-008",
+            "bio": "Psychiatrist helping patients with mental health conditions.",
+            "consultationFee": 160.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "farid.benmoussa9@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-009",
+            "bio": "Dentist specializing in oral health and dental procedures.",
+            "consultationFee": 90.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "amina.belhadj10@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-010",
+            "bio": "Internal medicine specialist for comprehensive adult healthcare.",
+            "consultationFee": 110.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "karim.mansouri11@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-011",
+            "bio": "Cardiologist with expertise in heart rhythm disorders.",
+            "consultationFee": 170.00,
+            "yearsOfExperience": 17
+        },
+        {
+            "userEmail": "salima.ouali12@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-012",
+            "bio": "Dermatologist specializing in cosmetic dermatology.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "hakim.boudjemaa13@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-013",
+            "bio": "Pediatrician focused on adolescent medicine.",
+            "consultationFee": 105.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "linda.meziani14@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-014",
+            "bio": "Neurologist specializing in stroke and headache disorders.",
+            "consultationFee": 190.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "youcef.saidi15@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-015",
+            "bio": "Orthopedic specialist in sports medicine and injuries.",
+            "consultationFee": 175.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "nadia.benhaddou16@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-016",
+            "bio": "Gynecologist with expertise in obstetrics and fertility.",
+            "consultationFee": 135.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "walid.ferhat17@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-017",
+            "bio": "Eye specialist focusing on retinal diseases.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "sabrina.aitali18@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-018",
+            "bio": "Child and adolescent psychiatrist.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "omar.toumi19@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-019",
+            "bio": "Oral surgeon with expertise in dental implants.",
+            "consultationFee": 95.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "houda.kouider20@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-020",
+            "bio": "Internal medicine specialist in endocrinology.",
+            "consultationFee": 115.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "brahim.benamar21@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-021",
+            "bio": "Interventional cardiologist specializing in cardiac procedures.",
+            "consultationFee": 200.00,
+            "yearsOfExperience": 18
+        },
+        {
+            "userEmail": "rania.ghali22@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-022",
+            "bio": "Dermatologist with focus on skin cancer screening.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "khaled.merabet23@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-023",
+            "bio": "Neonatologist specializing in newborn care.",
+            "consultationFee": 110.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "imane.dahmani24@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-024",
+            "bio": "Neurologist specializing in epilepsy and seizures.",
+            "consultationFee": 185.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "sofiane.yahia25@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-025",
+            "bio": "Orthopedic surgeon specializing in joint replacement.",
+            "consultationFee": 195.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "amal.bensaid26@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-026",
+            "bio": "Gynecologic oncologist with expertise in women's cancers.",
+            "consultationFee": 180.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "redouane.hammadi27@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-027",
+            "bio": "Cornea specialist and refractive surgeon.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "nesrine.boukhalfa28@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-028",
+            "bio": "Forensic psychiatrist with experience in legal cases.",
+            "consultationFee": 165.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "ayoub.meftah29@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-029",
+            "bio": "Pediatric dentist specializing in children's oral health.",
+            "consultationFee": 85.00,
+            "yearsOfExperience": 7
+        },
+        {
+            "userEmail": "dounia.belabbes30@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-030",
+            "bio": "Rheumatologist treating autoimmune and inflammatory diseases.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "taha.benali31@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-031",
+            "bio": "Cardiac electrophysiologist specializing in arrhythmias.",
+            "consultationFee": 175.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "leila.cherif32@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-032",
+            "bio": "Cosmetic dermatologist with expertise in anti-aging treatments.",
+            "consultationFee": 135.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "kamel.maazouz33@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-033",
+            "bio": "Pediatric endocrinologist for hormonal disorders in children.",
+            "consultationFee": 120.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "meriem.bouguerra34@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-034",
+            "bio": "Movement disorders specialist treating Parkinson's disease.",
+            "consultationFee": 195.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "sami.hadjeri35@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-035",
+            "bio": "Hand and upper extremity surgeon.",
+            "consultationFee": 160.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "souad.khelifi36@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-036",
+            "bio": "Reproductive endocrinologist specializing in infertility.",
+            "consultationFee": 170.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "youssef.zkiri37@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-037",
+            "bio": "Glaucoma specialist with advanced surgical techniques.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "fatima.amer38@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-038",
+            "bio": "Geriatric psychiatrist for elderly mental health.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "mohammed.benmoussa39@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-039",
+            "bio": "Prosthodontist specializing in dental prosthetics.",
+            "consultationFee": 100.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "zahra.belhadj40@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-040",
+            "bio": "Nephrologist specializing in kidney diseases.",
+            "consultationFee": 140.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "amine.mansouri41@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-041",
+            "bio": "Pediatric cardiologist for congenital heart conditions.",
+            "consultationFee": 165.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "hafsa.ouali42@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-042",
+            "bio": "Pediatric dermatologist for children's skin conditions.",
+            "consultationFee": 115.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "bilal.boudjemaa43@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-043",
+            "bio": "Pediatric gastroenterologist for digestive disorders.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "nour.meziani44@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-044",
+            "bio": "Neuro-oncologist specializing in brain tumors.",
+            "consultationFee": 220.00,
+            "yearsOfExperience": 17
+        },
+        {
+            "userEmail": "hamza.saidi45@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-045",
+            "bio": "Spine surgeon with expertise in back and neck disorders.",
+            "consultationFee": 185.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "sara.benhaddou46@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-046",
+            "bio": "Urogynecologist for pelvic floor disorders.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "anas.ferhat47@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-047",
+            "bio": "Pediatric ophthalmologist for children's vision problems.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "marwa.aitali48@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-048",
+            "bio": "Addiction psychiatrist helping with substance abuse.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "adam.toumi49@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-049",
+            "bio": "Orthodontist specializing in braces and teeth alignment.",
+            "consultationFee": 110.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "maya.kouider50@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-050",
+            "bio": "Pulmonologist for lung and respiratory diseases.",
+            "consultationFee": 135.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "yacine.benamar51@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-051",
+            "bio": "Cardiovascular surgeon for heart surgeries.",
+            "consultationFee": 250.00,
+            "yearsOfExperience": 20
+        },
+        {
+            "userEmail": "ines.ghali52@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-052",
+            "bio": "Mohs surgeon specializing in skin cancer removal.",
+            "consultationFee": 200.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "zaki.merabet53@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-053",
+            "bio": "Pediatric cardiologist for heart conditions in children.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "laila.dahmani54@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-054",
+            "bio": "Multiple sclerosis specialist and neuroimmunologist.",
+            "consultationFee": 175.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "said.yahia55@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-055",
+            "bio": "Foot and ankle surgeon for lower extremity disorders.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "rim.bensaid56@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-056",
+            "bio": "Maternal-fetal medicine specialist for high-risk pregnancies.",
+            "consultationFee": 190.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "ilyes.hammadi57@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-057",
+            "bio": "Retina specialist for macular degeneration and diabetic eye disease.",
+            "consultationFee": 165.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "nourhan.boukhalfa58@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-058",
+            "bio": "Clinical psychologist with expertise in trauma therapy.",
+            "consultationFee": 140.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "rayan.meftah59@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-059",
+            "bio": "Periodontist specializing in gum diseases and implants.",
+            "consultationFee": 105.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "jihan.belabbes60@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-060",
+            "bio": "Gastroenterologist for digestive system disorders.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "fares.benali61@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-061",
+            "bio": "Preventive cardiologist focusing on heart disease prevention.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "malak.cherif62@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-062",
+            "bio": "Allergist dermatologist for skin allergies and eczema.",
             "consultationFee": 120.00,
             "yearsOfExperience": 10
         },
         {
-            "userEmail": "dr.wilson@example.com",
+            "userEmail": "lounis.maazouz63@medmail.dz",
             "specialization": "Pediatrics",
-            "licenseNumber": "LIC11223",
-            "bio": "Dedicated pediatrician focused on child health and development.",
-            "consultationFee": 100.00,
+            "licenseNumber": "DZ-PEDI-063",
+            "bio": "Pediatric pulmonologist for respiratory conditions in children.",
+            "consultationFee": 115.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "samia.bouguerra64@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-064",
+            "bio": "Vascular neurologist specializing in stroke prevention and treatment.",
+            "consultationFee": 180.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "naim.hadjeri65@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-065",
+            "bio": "Trauma surgeon for complex bone fractures and injuries.",
+            "consultationFee": 170.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "hiba.khelifi66@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-066",
+            "bio": "Minimally invasive gynecologic surgeon.",
+            "consultationFee": 160.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "ibrahim.zkiri67@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-067",
+            "bio": "Oculoplastic surgeon for eyelid and facial reconstructive surgery.",
+            "consultationFee": 175.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "ranya.amer68@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-068",
+            "bio": "Sleep psychiatrist for sleep disorders and insomnia.",
+            "consultationFee": 135.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "marouane.benmoussa69@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-069",
+            "bio": "Endodontist specializing in root canal treatments.",
+            "consultationFee": 120.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "lyna.belhadj70@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-070",
+            "bio": "Hematologist for blood disorders and cancers.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "ismael.mansouri71@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-071",
+            "bio": "Heart failure specialist with advanced treatment options.",
+            "consultationFee": 185.00,
+            "yearsOfExperience": 17
+        },
+        {
+            "userEmail": "khadija.ouali72@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-072",
+            "bio": "Laser dermatologist for cosmetic and medical skin treatments.",
+            "consultationFee": 140.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "rayen.boudjemaa73@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-073",
+            "bio": "Pediatric nephrologist for kidney conditions in children.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "yasmine.meziani74@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-074",
+            "bio": "Cognitive neurologist specializing in dementia and memory disorders.",
+            "consultationFee": 165.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "mehdi.saidi75@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-075",
+            "bio": "Shoulder and elbow specialist for upper extremity disorders.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "amani.benhaddou76@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-076",
+            "bio": "Adolescent gynecologist for teenage girls' health concerns.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "zakaria.ferhat77@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-077",
+            "bio": "Neuro-ophthalmologist for vision problems related to brain conditions.",
+            "consultationFee": 170.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "assia.aitali78@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-078",
+            "bio": "Eating disorders specialist with comprehensive treatment approaches.",
+            "consultationFee": 160.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "hassan.toumi79@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-079",
+            "bio": "Cosmetic dentist specializing in smile makeovers and veneers.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "nada.kouider80@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-080",
+            "bio": "Infectious disease specialist for complex infections.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "oussama.benamar81@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-081",
+            "bio": "Sports cardiologist for athletes' heart health.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "chaima.ghali82@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-082",
+            "bio": "Acne specialist with advanced treatment protocols.",
+            "consultationFee": 115.00,
             "yearsOfExperience": 8
         },
         {
-            "userEmail": "dr.garcia@example.com",
-            "specialization": "Neurology",
-            "licenseNumber": "LIC44556",
-            "bio": "Specialist in neurological disorders and brain health.",
+            "userEmail": "maher.merabet83@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-083",
+            "bio": "Pediatric oncologist for childhood cancers.",
             "consultationFee": 200.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "carmen.dahmani84@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-084",
+            "bio": "Pain management neurologist for chronic pain conditions.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "noureddine.yahia85@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-085",
+            "bio": "Knee and hip replacement surgeon with minimally invasive techniques.",
+            "consultationFee": 195.00,
+            "yearsOfExperience": 18
+        },
+        {
+            "userEmail": "tasnim.bensaid86@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-086",
+            "bio": "Breast health specialist and surgeon.",
+            "consultationFee": 175.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "jalil.hammadi87@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-087",
+            "bio": "Comprehensive ophthalmologist with cataract surgery expertise.",
+            "consultationFee": 135.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "hanaa.boukhalfa88@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-088",
+            "bio": "Mood disorders specialist for depression and bipolar disorder.",
+            "consultationFee": 145.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "zayd.meftah89@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-089",
+            "bio": "Oral and maxillofacial surgeon for complex dental procedures.",
+            "consultationFee": 180.00,
+            "yearsOfExperience": 15
+        },
+        {
+            "userEmail": "mariam.belabbes90@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-090",
+            "bio": "Allergist and immunologist for immune system disorders.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "bachir.benali91@medmail.dz",
+            "specialization": "Cardiology",
+            "licenseNumber": "DZ-CARD-091",
+            "bio": "Non-invasive cardiologist with expertise in echocardiography.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 14
+        },
+        {
+            "userEmail": "wafa.cherif92@medmail.dz",
+            "specialization": "Dermatology",
+            "licenseNumber": "DZ-DERM-092",
+            "bio": "Hair restoration specialist for hair loss treatments.",
+            "consultationFee": 130.00,
+            "yearsOfExperience": 11
+        },
+        {
+            "userEmail": "mounir.maazouz93@medmail.dz",
+            "specialization": "Pediatrics",
+            "licenseNumber": "DZ-PEDI-093",
+            "bio": "Pediatric allergist for allergies and asthma in children.",
+            "consultationFee": 110.00,
+            "yearsOfExperience": 8
+        },
+        {
+            "userEmail": "badria.bouguerra94@medmail.dz",
+            "specialization": "Neurology",
+            "licenseNumber": "DZ-NEUR-094",
+            "bio": "Pediatric neurologist for neurological conditions in children.",
+            "consultationFee": 160.00,
             "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "younes.hadjeri95@medmail.dz",
+            "specialization": "Orthopedics",
+            "licenseNumber": "DZ-ORTH-095",
+            "bio": "Sports medicine physician for athletic injuries and performance.",
+            "consultationFee": 140.00,
+            "yearsOfExperience": 10
+        },
+        {
+            "userEmail": "rahma.khelifi96@medmail.dz",
+            "specialization": "Gynecology",
+            "licenseNumber": "DZ-GYNE-096",
+            "bio": "Endoscopic gynecologist for minimally invasive procedures.",
+            "consultationFee": 155.00,
+            "yearsOfExperience": 13
+        },
+        {
+            "userEmail": "yasser.zkiri97@medmail.dz",
+            "specialization": "Ophthalmology",
+            "licenseNumber": "DZ-OPHT-097",
+            "bio": "Contact lens specialist for complex vision correction.",
+            "consultationFee": 125.00,
+            "yearsOfExperience": 9
+        },
+        {
+            "userEmail": "siham.amer98@medmail.dz",
+            "specialization": "Psychiatry",
+            "licenseNumber": "DZ-PSYC-098",
+            "bio": "Anxiety disorders specialist with cognitive behavioral therapy focus.",
+            "consultationFee": 150.00,
+            "yearsOfExperience": 12
+        },
+        {
+            "userEmail": "abdelkader.benmoussa99@medmail.dz",
+            "specialization": "Dentistry",
+            "licenseNumber": "DZ-DENT-099",
+            "bio": "General dentist with comprehensive oral healthcare services.",
+            "consultationFee": 95.00,
+            "yearsOfExperience": 16
+        },
+        {
+            "userEmail": "douaa.belhadj100@medmail.dz",
+            "specialization": "Internal Medicine",
+            "licenseNumber": "DZ-INTE-100",
+            "bio": "Primary care physician with expertise in preventive medicine.",
+            "consultationFee": 120.00,
+            "yearsOfExperience": 15
         }
     ],
     "availabilities": [
         {
-            "doctorEmail": "dr.smith@example.com",
+            "doctorEmail": "adel.benali1@medmail.dz",
             "dayOfWeek": 1,
             "startTime": "09:00:00",
             "endTime": "17:00:00",
             "slotDuration": 30
         },
         {
-            "doctorEmail": "dr.smith@example.com",
+            "doctorEmail": "adel.benali1@medmail.dz",
             "dayOfWeek": 3,
-            "startTime": "10:00:00",
-            "endTime": "15:00:00",
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
             "slotDuration": 30
         },
         {
-            "doctorEmail": "dr.jones@example.com",
+            "doctorEmail": "samira.cherif2@medmail.dz",
             "dayOfWeek": 2,
             "startTime": "08:30:00",
             "endTime": "16:30:00",
             "slotDuration": 45
         },
         {
-            "doctorEmail": "dr.jones@example.com",
+            "doctorEmail": "samira.cherif2@medmail.dz",
             "dayOfWeek": 4,
             "startTime": "08:30:00",
             "endTime": "16:30:00",
             "slotDuration": 45
         },
         {
-            "doctorEmail": "dr.wilson@example.com",
+            "doctorEmail": "nassim.maazouz3@medmail.dz",
             "dayOfWeek": 1,
             "startTime": "09:00:00",
             "endTime": "17:00:00",
             "slotDuration": 30
         },
         {
-            "doctorEmail": "dr.wilson@example.com",
+            "doctorEmail": "nassim.maazouz3@medmail.dz",
             "dayOfWeek": 5,
             "startTime": "09:00:00",
             "endTime": "17:00:00",
             "slotDuration": 30
         },
         {
-            "doctorEmail": "dr.garcia@example.com",
+            "doctorEmail": "fatiha.bouguerra4@medmail.dz",
             "dayOfWeek": 2,
             "startTime": "10:00:00",
             "endTime": "18:00:00",
             "slotDuration": 60
+        },
+        {
+            "doctorEmail": "fatiha.bouguerra4@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "rachid.hadjeri5@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "rachid.hadjeri5@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "yasmina.khelifi6@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "yasmina.khelifi6@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mohamed.zkiri7@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mohamed.zkiri7@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ilham.amer8@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "ilham.amer8@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "farid.benmoussa9@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "farid.benmoussa9@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "amina.belhadj10@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "amina.belhadj10@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "karim.mansouri11@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "karim.mansouri11@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "salima.ouali12@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "salima.ouali12@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hakim.boudjemaa13@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hakim.boudjemaa13@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "linda.meziani14@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "linda.meziani14@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "youcef.saidi15@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "youcef.saidi15@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "nadia.benhaddou16@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nadia.benhaddou16@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "walid.ferhat17@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "walid.ferhat17@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "sabrina.aitali18@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "sabrina.aitali18@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "omar.toumi19@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "omar.toumi19@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "houda.kouider20@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "houda.kouider20@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "brahim.benamar21@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "brahim.benamar21@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "rania.ghali22@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rania.ghali22@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "khaled.merabet23@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "khaled.merabet23@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "imane.dahmani24@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "imane.dahmani24@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "sofiane.yahia25@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "sofiane.yahia25@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "amal.bensaid26@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "amal.bensaid26@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "redouane.hammadi27@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "redouane.hammadi27@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nesrine.boukhalfa28@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "nesrine.boukhalfa28@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "ayoub.meftah29@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ayoub.meftah29@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dounia.belabbes30@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "dounia.belabbes30@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "taha.benali31@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "taha.benali31@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "leila.cherif32@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "leila.cherif32@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "kamel.maazouz33@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "kamel.maazouz33@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "meriem.bouguerra34@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "meriem.bouguerra34@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "sami.hadjeri35@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "sami.hadjeri35@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "souad.khelifi36@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "souad.khelifi36@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "youssef.zkiri37@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "youssef.zkiri37@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "fatima.amer38@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "fatima.amer38@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "mohammed.benmoussa39@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mohammed.benmoussa39@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zahra.belhadj40@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zahra.belhadj40@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "amine.mansouri41@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "amine.mansouri41@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "hafsa.ouali42@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hafsa.ouali42@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "bilal.boudjemaa43@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "bilal.boudjemaa43@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nour.meziani44@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "nour.meziani44@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "hamza.saidi45@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "hamza.saidi45@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "sara.benhaddou46@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "sara.benhaddou46@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "anas.ferhat47@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "anas.ferhat47@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "marwa.aitali48@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "marwa.aitali48@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "adam.toumi49@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "adam.toumi49@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "maya.kouider50@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "maya.kouider50@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "yacine.benamar51@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "yacine.benamar51@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "ines.ghali52@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ines.ghali52@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zaki.merabet53@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zaki.merabet53@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "laila.dahmani54@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "laila.dahmani54@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "said.yahia55@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "said.yahia55@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "rim.bensaid56@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rim.bensaid56@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ilyes.hammadi57@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ilyes.hammadi57@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nourhan.boukhalfa58@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "nourhan.boukhalfa58@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "rayan.meftah59@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rayan.meftah59@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "jihan.belabbes60@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "jihan.belabbes60@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "fares.benali61@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "fares.benali61@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "malak.cherif62@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "malak.cherif62@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "lounis.maazouz63@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "lounis.maazouz63@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "samia.bouguerra64@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "samia.bouguerra64@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "naim.hadjeri65@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "naim.hadjeri65@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "hiba.khelifi66@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hiba.khelifi66@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ibrahim.zkiri67@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ibrahim.zkiri67@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ranya.amer68@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "ranya.amer68@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "marouane.benmoussa69@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "marouane.benmoussa69@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "lyna.belhadj70@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "lyna.belhadj70@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "ismael.mansouri71@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "ismael.mansouri71@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "khadija.ouali72@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "khadija.ouali72@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rayen.boudjemaa73@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rayen.boudjemaa73@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "yasmine.meziani74@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "yasmine.meziani74@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "mehdi.saidi75@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "mehdi.saidi75@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "amani.benhaddou76@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "amani.benhaddou76@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zakaria.ferhat77@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zakaria.ferhat77@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "assia.aitali78@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "assia.aitali78@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "hassan.toumi79@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hassan.toumi79@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nada.kouider80@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "nada.kouider80@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "oussama.benamar81@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "oussama.benamar81@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "chaima.ghali82@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "chaima.ghali82@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "maher.merabet83@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "maher.merabet83@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "carmen.dahmani84@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "carmen.dahmani84@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "noureddine.yahia85@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "noureddine.yahia85@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "tasnim.bensaid86@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "tasnim.bensaid86@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "jalil.hammadi87@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "jalil.hammadi87@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "hanaa.boukhalfa88@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "hanaa.boukhalfa88@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "zayd.meftah89@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "zayd.meftah89@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mariam.belabbes90@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mariam.belabbes90@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "bachir.benali91@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "bachir.benali91@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "wafa.cherif92@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "wafa.cherif92@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mounir.maazouz93@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "mounir.maazouz93@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "08:00:00",
+            "endTime": "16:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "badria.bouguerra94@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "badria.bouguerra94@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "09:30:00",
+            "endTime": "17:30:00",
+            "slotDuration": 60
+        },
+        {
+            "doctorEmail": "younes.hadjeri95@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "younes.hadjeri95@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "rahma.khelifi96@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "rahma.khelifi96@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "08:30:00",
+            "endTime": "16:30:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "yasser.zkiri97@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "yasser.zkiri97@medmail.dz",
+            "dayOfWeek": 3,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "siham.amer98@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "siham.amer98@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "11:00:00",
+            "endTime": "19:00:00",
+            "slotDuration": 45
+        },
+        {
+            "doctorEmail": "abdelkader.benmoussa99@medmail.dz",
+            "dayOfWeek": 1,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "abdelkader.benmoussa99@medmail.dz",
+            "dayOfWeek": 5,
+            "startTime": "09:00:00",
+            "endTime": "17:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "douaa.belhadj100@medmail.dz",
+            "dayOfWeek": 2,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
+        },
+        {
+            "doctorEmail": "douaa.belhadj100@medmail.dz",
+            "dayOfWeek": 4,
+            "startTime": "10:00:00",
+            "endTime": "18:00:00",
+            "slotDuration": 30
         }
     ]
 }

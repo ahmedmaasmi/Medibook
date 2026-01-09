@@ -1,16 +1,15 @@
 # Doctor Appointment Platform (MediBook)
 
-A production-ready, full-stack Doctor Appointment Platform with AI voice scheduling capabilities. Built with Next.js, Flutter, and Node.js/Express.
+A production-ready, full-stack Doctor Appointment Platform with AI voice scheduling and 3D visualization capabilities. Built with Next.js and Node.js/Express.
 
 ![MediBook](https://img.shields.io/badge/MediBook-Healthcare%20Platform-6366F1)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 🏗️ Architecture
 
-```
+```text
 /backend    → Node.js + Express + PostgreSQL
 /web        → Next.js 14 + Tailwind CSS
-/mobile     → Flutter 3.x
 ```
 
 ## ✨ Features
@@ -20,6 +19,7 @@ A production-ready, full-stack Doctor Appointment Platform with AI voice schedul
 - 🎤 **AI Voice Booking** - Schedule appointments using natural voice commands
 - 📋 View and manage appointments
 - 🔔 Appointment confirmations and reminders
+- 🏥 **3D Medical Visualization** - Interactive 3D medical models and caduceus display
 
 ### For Doctors
 - 📊 Dashboard with today's schedule
@@ -70,14 +70,6 @@ npm run dev
 
 **Web app runs at:** `http://localhost:3000`
 
-### 3. Mobile App Setup
-
-```bash
-cd mobile
-flutter pub get
-flutter run
-```
-
 ## 🔐 Environment Variables
 
 ### Backend (.env)
@@ -96,6 +88,27 @@ GOOGLE_REDIRECT_URI=http://localhost:3001/api/calendar/callback
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001/api
 ```
+
+## 👥 Test Users
+
+After running the database seeding script, you can use these test accounts to explore the application:
+
+### Doctors
+| Email | Password | Specialty |
+|-------|----------|-----------|
+| dr.smith@example.com | Password123! | Cardiology |
+| dr.jones@example.com | Password123! | Dermatology |
+| dr.wilson@example.com | Password123! | Pediatrics |
+| dr.garcia@example.com | Password123! | Neurology |
+
+### Clients
+| Email | Password |
+|-------|----------|
+| client1@example.com | Password123! |
+| client2@example.com | Password123! |
+| ahmed@test.com | Password123! |
+
+**Note:** Run `npm run seed` in the backend directory to populate the database with these users.
 
 ## 📚 API Documentation
 
@@ -138,27 +151,11 @@ NEXT_PUBLIC_API_URL=http://localhost:3001/api
 
 | Component | Technology | Version |
 |-----------|------------|---------|
-| Backend | Node.js + Express | 4.18.x |
-| Database | PostgreSQL + Sequelize | 16.x / 6.x |
-| Web | Next.js + Tailwind CSS | 14.x / 3.x |
-| Mobile | Flutter | 3.x |
-| AI | OpenRouter SDK | Latest |
-| Voice (Web) | Web Speech API | Native |
-| Voice (Mobile) | speech_to_text | 6.x |
-
-## 📱 Mobile Permissions
-
-Add to `android/app/src/main/AndroidManifest.xml`:
-```xml
-<uses-permission android:name="android.permission.RECORD_AUDIO"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-```
-
-Add to `ios/Runner/Info.plist`:
-```xml
-<key>NSMicrophoneUsageDescription</key>
-<string>Required for voice booking</string>
-```
+| Backend | Node.js + Express | 18+ / 4.18.x |
+| Database | PostgreSQL + Sequelize | 14+ / 6.35.x |
+| Web | Next.js + Tailwind CSS | 14.2.35 / 3.4.x |
+| AI | OpenRouter SDK | 0.2.11 |
+| Voice | Web Speech API | Native |
 
 ## 🌐 Google Calendar Setup
 
@@ -171,7 +168,7 @@ Add to `ios/Runner/Info.plist`:
 
 ## 📁 Project Structure
 
-```
+```text
 tp_mcp/
 ├── backend/
 │   ├── src/
@@ -179,24 +176,20 @@ tp_mcp/
 │   │   ├── middleware/    # Auth & error handling
 │   │   ├── models/        # Sequelize models
 │   │   ├── routes/        # API routes
+│   │   ├── scripts/       # Database seeding scripts
 │   │   ├── services/      # Business logic
 │   │   └── server.js      # Express app
 │   └── package.json
 ├── web/
+│   ├── public/
+│   │   └── 3d/           # 3D assets
 │   ├── src/
-│   │   ├── app/           # Next.js App Router
-│   │   ├── components/    # React components
-│   │   └── lib/           # Utilities & API client
+│   │   ├── app/          # Next.js App Router
+│   │   ├── components/   # React components
+│   │   └── lib/          # Utilities & API client
 │   └── package.json
-└── mobile/
-    ├── lib/
-    │   ├── config/        # App configuration
-    │   ├── models/        # Data models
-    │   ├── providers/     # State management
-    │   ├── screens/       # UI screens
-    │   ├── services/      # API service
-    │   └── main.dart      # App entry
-    └── pubspec.yaml
+├── README.md
+└── seeded_users.txt       # Test user credentials
 ```
 
 ## 🧪 Testing
@@ -214,25 +207,3 @@ npm run build  # Build check
 npm run lint   # Lint check
 ```
 
-### Mobile
-```bash
-cd mobile
-flutter analyze
-flutter test
-```
-
-## 📄 License
-
-MIT License - Free for personal and commercial use.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
----
-
-**Built with ❤️ using free, open-source technologies**

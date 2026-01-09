@@ -21,7 +21,7 @@ const handleValidationErrors = (req, res, next) => {
 // Register
 router.post('/register',
     [
-        body('email').isEmail().normalizeEmail(),
+        body('email').isEmail({ minDomainSegments: 2 }).normalizeEmail(),
         body('password').isLength({ min: 6 }),
         body('firstName').notEmpty().trim(),
         body('lastName').notEmpty().trim(),
@@ -45,7 +45,7 @@ router.post('/register',
 // Login
 router.post('/login',
     [
-        body('email').isEmail().normalizeEmail(),
+        body('email').isEmail({ minDomainSegments: 2 }).normalizeEmail(),
         body('password').notEmpty(),
     ],
     handleValidationErrors,

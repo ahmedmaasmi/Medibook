@@ -216,14 +216,42 @@ export const calendarApi = {
         api.post<{ success: boolean }>('/calendar/disconnect', {}),
 };
 
+// Admin API
+export const adminApi = {
+    getStats: () =>
+        api.get<{ success: boolean; data: AdminStats }>('/admin/stats'),
+
+    getUsers: (page = 1, limit = 10) =>
+        api.get<{ success: boolean; data: { users: User[], pagination: Pagination } }>(`/admin/users?page=${page}&limit=${limit}`),
+
+    updateUser: (id: string, data: { role?: string, isActive?: boolean }) =>
+        api.patch<{ success: boolean; data: { user: User } }>(`/admin/users/${id}`, data),
+
+    getAppointments: (page = 1, limit = 10) =>
+        api.get<{ success: boolean; data: { appointments: Appointment[], pagination: Pagination } }>(`/admin/appointments?page=${page}&limit=${limit}`),
+};
+
 // Types
+export interface AdminStats {
+    totalUsers: number;
+    totalDoctors: number;
+    totalAppointments: number;
+    pendingAppointments: number;
+}
+
+export interface Pagination {
+    total: number;
+    page: number;
+    pages: number;
+}
+
 export interface User {
     id: string;
     email: string;
     firstName: string;
     lastName: string;
     phone?: string;
-    role: 'client' | 'doctor';
+    role: 'client' | 'doctor' | 'admin';
     isActive: boolean;
     createdAt: string;
 }

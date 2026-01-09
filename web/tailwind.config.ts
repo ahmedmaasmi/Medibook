@@ -22,6 +22,10 @@ const config: Config = {
                     900: '#1e3a8a',
                     950: '#172554',
                 },
+                lime: {
+                    DEFAULT: '#E2FF8D',
+                    hover: '#d4ff5e',
+                },
                 accent: {
                     50: '#f0f9ff',
                     100: '#e0f2fe',

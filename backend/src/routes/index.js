@@ -5,6 +5,7 @@ import voiceRoutes from './voice.routes.js';
 import calendarRoutes from './calendar.routes.js';
 import chatRoutes from './chat.routes.js';
 import aiRoutes from './ai.routes.js';
+import adminRoutes from './admin.routes.js';
 
 export const setupRoutes = (app) => {
     app.use('/api/auth', authRoutes);
@@ -14,6 +15,7 @@ export const setupRoutes = (app) => {
     app.use('/api/calendar', calendarRoutes);
     app.use('/api/chat', chatRoutes);
     app.use('/api/ai', aiRoutes);
+    app.use('/api/admin', adminRoutes);
 
     // Health check
     app.get('/api/health', (req, res) => {
