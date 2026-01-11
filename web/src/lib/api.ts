@@ -11,6 +11,8 @@ interface RequestOptions {
 class ApiClient {
     private baseUrl: string;
     private token: string | null = null;
+    private cache = new Map<string, { data: any; expiry: number }>();
+    private inFlight = new Map<string, Promise<any>>();
 
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
@@ -18,6 +20,9 @@ class ApiClient {
 
     setToken(token: string | null) {
         this.token = token;
+        // Clear cache when token changes to avoid cross-user data leak
+        this.cache.clear();
+        this.inFlight.clear();
     }
 
     private getAuthHeaders(): Record<string, string> {
@@ -25,8 +30,25 @@ class ApiClient {
         return token ? { Authorization: `Bearer ${token}` } : {};
     }
 
-    async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-        const { method = 'GET', body, headers = {} } = options;
+    async request<T>(endpoint: string, options: RequestOptions & { signal?: AbortSignal; cacheKey?: string; ttl?: number } = {}): Promise<T> {
+        const { method = 'GET', body, headers = {}, signal, cacheKey, ttl } = options;
+
+        // Only cache GET requests
+        const isCacheable = method === 'GET' && (cacheKey || ttl);
+        const fullCacheKey = isCacheable ? `${method}:${endpoint}:${this.token || Cookies.get('token') || 'anon'}` : null;
+
+        if (fullCacheKey) {
+            const cached = this.cache.get(fullCacheKey);
+            if (cached && cached.expiry > Date.now()) {
+                return cached.data as T;
+            }
+
+            // Dedupe in-flight requests
+            const existingPromise = this.inFlight.get(fullCacheKey);
+            if (existingPromise) {
+                return existingPromise as Promise<T>;
+            }
+        }
 
         const config: RequestInit = {
             method,
@@ -36,42 +58,64 @@ class ApiClient {
                 ...headers,
             },
             credentials: 'include',
+            signal,
         };
 
         if (body) {
             config.body = JSON.stringify(body);
         }
 
-        const response = await fetch(`${this.baseUrl}${endpoint}`, config);
-        const data = await response.json();
+        const fetchPromise = (async () => {
+            try {
+                const response = await fetch(`${this.baseUrl}${endpoint}`, config);
+                const data = await response.json();
 
-        if (!response.ok) {
-            const error = new Error(data.message || 'An error occurred') as Error & { status?: number };
-            error.status = response.status;
-            throw error;
+                if (!response.ok) {
+                    const error = new Error(data.message || 'An error occurred') as Error & { status?: number };
+                    error.status = response.status;
+                    throw error;
+                }
+
+                if (fullCacheKey && ttl) {
+                    this.cache.set(fullCacheKey, {
+                        data,
+                        expiry: Date.now() + ttl,
+                    });
+                }
+
+                return data;
+            } finally {
+                if (fullCacheKey) {
+                    this.inFlight.delete(fullCacheKey);
+                }
+            }
+        })();
+
+        if (fullCacheKey) {
+            this.inFlight.set(fullCacheKey, fetchPromise);
         }
 
-        return data;
+        return fetchPromise;
     }
 
-    get<T>(endpoint: string) {
-        return this.request<T>(endpoint);
+    get<T>(endpoint: string, options: { signal?: AbortSignal; ttl?: number } = {}) {
+        return this.request<T>(endpoint, options);
     }
 
-    post<T>(endpoint: string, body: unknown) {
-        return this.request<T>(endpoint, { method: 'POST', body });
+    post<T>(endpoint: string, body: unknown, options: { signal?: AbortSignal } = {}) {
+        return this.request<T>(endpoint, { method: 'POST', body, ...options });
     }
 
-    put<T>(endpoint: string, body: unknown) {
-        return this.request<T>(endpoint, { method: 'PUT', body });
+    put<T>(endpoint: string, body: unknown, options: { signal?: AbortSignal } = {}) {
+        return this.request<T>(endpoint, { method: 'PUT', body, ...options });
     }
 
-    patch<T>(endpoint: string, body: unknown) {
-        return this.request<T>(endpoint, { method: 'PATCH', body });
+    patch<T>(endpoint: string, body: unknown, options: { signal?: AbortSignal } = {}) {
+        return this.request<T>(endpoint, { method: 'PATCH', body, ...options });
     }
 
-    delete<T>(endpoint: string) {
-        return this.request<T>(endpoint, { method: 'DELETE' });
+    delete<T>(endpoint: string, options: { signal?: AbortSignal } = {}) {
+        return this.request<T>(endpoint, { method: 'DELETE', ...options });
     }
 
     async stream(endpoint: string, body: unknown, onToken: (token: string) => void, onComplete?: (data: any) => void, signal?: AbortSignal) {
@@ -147,13 +191,13 @@ export const authApi = {
 // Doctors API
 export const doctorsApi = {
     getAll: () =>
-        api.get<{ success: boolean; data: { doctors: Doctor[] } }>('/doctors'),
+        api.get<{ success: boolean; data: { doctors: Doctor[] } }>('/doctors', { ttl: 5 * 60 * 1000 }), // 5 min cache
 
     getById: (id: string) =>
-        api.get<{ success: boolean; data: { doctor: Doctor } }>(`/doctors/${id}`),
+        api.get<{ success: boolean; data: { doctor: Doctor } }>(`/doctors/${id}`, { ttl: 60 * 1000 }), // 1 min cache
 
     getAvailability: (id: string) =>
-        api.get<{ success: boolean; data: { availabilities: Availability[] } }>(`/doctors/${id}/availability`),
+        api.get<{ success: boolean; data: { availabilities: Availability[] } }>(`/doctors/${id}/availability`, { ttl: 30 * 1000 }), // 30 sec cache
 
     updateProfile: (data: Partial<DoctorProfile>) =>
         api.put<{ success: boolean; data: { doctor: DoctorProfile } }>('/doctors/profile', data),
@@ -164,8 +208,8 @@ export const doctorsApi = {
 
 // Appointments API
 export const appointmentsApi = {
-    getSlots: (doctorId: string, date: string) =>
-        api.get<{ success: boolean; data: { slots: TimeSlot[] } }>(`/appointments/slots/${doctorId}?date=${date}`),
+    getSlots: (doctorId: string, date: string, signal?: AbortSignal) =>
+        api.get<{ success: boolean; data: { slots: TimeSlot[] } }>(`/appointments/slots/${doctorId}?date=${date}`, { signal, ttl: 30 * 1000 }), // 30 sec cache
 
     book: (data: BookingData) =>
         api.post<{ success: boolean; data: { appointment: Appointment } }>('/appointments', data),
