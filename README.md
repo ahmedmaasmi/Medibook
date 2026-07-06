@@ -5,6 +5,14 @@ A production-ready, full-stack Doctor Appointment Platform with AI voice schedul
 ![MediBook](https://img.shields.io/badge/MediBook-Healthcare%20Platform-6366F1)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## 📸 Preview
+
+### Homepage
+![MediBook Homepage](gifs/homepage.gif)
+
+### Sign Up
+![MediBook Sign Up](gifs/signup.gif)
+
 ## 🏗️ Architecture
 
 ```text

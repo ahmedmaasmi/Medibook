@@ -1,6 +1,15 @@
 node_modules/
-.env
-*.log
-.DS_Store
 dist/
 coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Local embedded PostgreSQL data (embedded-postgres)
+.embedded-db/
+
+# Logs & OS
+*.log
+.DS_Store
