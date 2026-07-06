@@ -10,6 +10,10 @@ A production-ready, full-stack Doctor Appointment Platform with AI voice schedul
 ### Homepage
 ![MediBook Homepage](gifs/homepage.gif)
 
+*In the homepage demonstration, the user inputs their symptoms into the platform. The AI then utilizes a RAG (Retrieval-Augmented Generation) pipeline to analyze the symptoms, identify suitable doctors, check their Google Calendar for availability, and automatically find the best time, the most qualified specialist, and the nearest doctor for the patient.*
+
+<br>
+
 ### Sign Up
 ![MediBook Sign Up](gifs/signup.gif)
 
